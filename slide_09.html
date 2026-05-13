@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 09 – ROI-Rechner</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;background:#2c313c;overflow:hidden;z-index:0; }
+  .bg { position:absolute;inset:0;background:radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.12) 0%,transparent 55%),radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.08) 0%,transparent 60%);pointer-events:none; }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em; }
+  .brand span { color:#5b8ff1; }
+  .slide-num { font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700; }
+  .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
+  .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
+  .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
+  .slide-title { flex-shrink:0;padding:6vh 4.5vw 1.5vh; }
+  .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1.8vh; }
+  .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
+  .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
+  .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+
+  .body { flex:1;display:flex;gap:2.5vw;padding:0 4.5vw 2vh;min-height:0;align-items:center; }
+
+  /* LEFT — Inputs */
+  .left { width:38vw;flex-shrink:0;display:flex;flex-direction:column;gap:1.4vh; }
+
+  .anchor-box {
+    border-radius:12px;
+    background:rgba(91,143,241,0.07);border:1px solid rgba(91,143,241,0.2);
+    padding:clamp(12px,1.3vh,18px) clamp(14px,1.4vw,20px);
+  }
+  .anchor-text { font-size:clamp(13px,1.05vw,17px);color:rgba(255,255,255,0.85);line-height:1.55; }
+  .anchor-text strong { color:#ffffff;font-weight:700; }
+  .anchor-text em { font-style:normal;color:#5b8ff1;font-weight:700; }
+
+  .inputs-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4); }
+
+  .input-grid { display:grid;grid-template-columns:1fr 1fr;gap:1vh 1.2vw; }
+
+  .input-row { display:flex;flex-direction:column;gap:0.4vh; }
+  .input-lbl { font-size:clamp(10px,0.82vw,13px);font-weight:700;color:rgba(255,255,255,0.55);letter-spacing:0.06em; }
+  .input-wrap { display:flex;align-items:center;gap:0.5vw; }
+  input[type=range] {
+    flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;
+    background:rgba(91,143,241,0.25);outline:none;cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#5b8ff1;cursor:pointer;box-shadow:0 0 6px rgba(91,143,241,0.5); }
+  .input-val { font-size:clamp(12px,1vw,16px);font-weight:700;color:#5b8ff1;min-width:5vw;text-align:right; }
+
+  /* RIGHT — Outputs */
+  .right { flex:1;display:flex;flex-direction:column;gap:1.4vh; }
+
+  .output-grid { display:grid;grid-template-columns:1fr 1fr;gap:1vh; }
+  .out-card { border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);padding:clamp(12px,1.3vh,18px) clamp(12px,1.2vw,18px);display:flex;flex-direction:column;gap:0.3vh; }
+  .out-card.hero { background:rgba(91,143,241,0.08);border-color:rgba(91,143,241,0.25); }
+  .out-lbl { font-size:clamp(9px,0.75vw,12px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4); }
+  .out-card.hero .out-lbl { color:#5b8ff1; }
+  .out-val { font-size:clamp(20px,2.4vw,38px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .out-val.red { background:none;-webkit-background-clip:unset;background-clip:unset;color:#ff6b6b; }
+  .out-val.green { background:none;-webkit-background-clip:unset;background-clip:unset;color:#34c759; }
+  .out-sub { font-size:clamp(10px,0.8vw,13px);color:rgba(255,255,255,0.5);margin-top:0.2vh; }
+
+  .breakeven-card {
+    border-radius:14px;
+    background:linear-gradient(145deg,rgba(52,199,89,0.10),rgba(52,199,89,0.03));
+    border:1px solid rgba(52,199,89,0.25);
+    padding:clamp(14px,1.5vh,20px) clamp(14px,1.4vw,20px);
+    text-align:center;position:relative;overflow:hidden;
+  }
+  .breakeven-card::before { content:'';position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(52,199,89,0.5),transparent); }
+  .breakeven-lbl { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(52,199,89,0.8);margin-bottom:0.5vh; }
+  .breakeven-val { font-size:clamp(28px,3.5vw,56px);font-weight:900;color:#34c759;line-height:1; }
+  .breakeven-sub { font-size:clamp(12px,0.95vw,16px);color:rgba(255,255,255,0.7);margin-top:0.4vh; }
+
+  .note-box { border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:clamp(8px,1vh,13px) clamp(12px,1.2vw,18px); }
+  .note-text { font-size:clamp(10px,0.82vw,13px);color:rgba(255,255,255,0.4);font-style:italic;line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="slide-wrap">
+  <div class="bg"></div>
+  <div class="slide">
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">09 / 11</div>
+    </div>
+    <div class="slide-title">
+      <div class="eyebrow">Ihr Projekt &mdash; Ihre Zahlen</div>
+      <div class="headline">Was rechnet sich <span class="hl">f&uuml;r Sie?</span></div>
+    </div>
+    <div class="body">
+
+      <!-- LEFT -->
+      <div class="left">
+        <div class="anchor-box">
+          <div class="anchor-text">
+            Eine zus&auml;tzlich verkaufte Einheit hat in Ihrer Gr&ouml;&szlig;enordnung einen Margenwert von <em>40.000&ndash;80.000&nbsp;&euro;</em>. Davor relativiert sich die Frage der monatlichen Investition.
+          </div>
+        </div>
+
+        <div class="inputs-label">Ihr Projekt</div>
+
+        <div class="input-grid">
+          <div class="input-row">
+            <div class="input-lbl">Verkaufspreis pro Einheit</div>
+            <div class="input-wrap">
+              <input type="range" id="preis" min="200000" max="1000000" step="10000" value="380000">
+              <div class="input-val" id="preis_v">380.000&nbsp;&euro;</div>
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-lbl">Marge (% des Verkaufspreises)</div>
+            <div class="input-wrap">
+              <input type="range" id="marge" min="8" max="25" step="1" value="15">
+              <div class="input-val" id="marge_v">15&nbsp;%</div>
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-lbl">Offene Einheiten</div>
+            <div class="input-wrap">
+              <input type="range" id="we" min="5" max="60" step="1" value="20">
+              <div class="input-val" id="we_v">20&nbsp;WE</div>
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-lbl">Aktuelles Portal-Budget/Monat</div>
+            <div class="input-wrap">
+              <input type="range" id="portal" min="500" max="5000" step="100" value="2000">
+              <div class="input-val" id="portal_v">2.000&nbsp;&euro;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+        <div class="output-grid">
+          <div class="out-card hero">
+            <div class="out-lbl">Marge pro Einheit</div>
+            <div class="out-val" id="out_marge">57.000&nbsp;&euro;</div>
+            <div class="out-sub">Konservative Rechnung</div>
+          </div>
+          <div class="out-card">
+            <div class="out-lbl">CoI gesamt &mdash; pro Monat</div>
+            <div class="out-val red" id="out_coi">90.000&nbsp;&euro;</div>
+            <div class="out-sub">bei 20 offenen Einheiten</div>
+          </div>
+          <div class="out-card">
+            <div class="out-lbl">Einsparung vs. Portal-Budget</div>
+            <div class="out-val" id="out_save">0&nbsp;&euro;</div>
+            <div class="out-sub">pro Monat &mdash; gleiche Anfragen</div>
+          </div>
+          <div class="out-card">
+            <div class="out-lbl">Retainer p.a. vs. 1 Einheit</div>
+            <div class="out-val" id="out_ratio">2,2&nbsp;%</div>
+            <div class="out-sub">der Marge einer einzigen Einheit</div>
+          </div>
+        </div>
+
+        <div class="breakeven-card">
+          <div class="breakeven-lbl">Break-Even &mdash; bereits bei</div>
+          <div class="breakeven-val" id="out_breakeven">1 Einheit</div>
+          <div class="breakeven-sub" id="out_be_sub">amortisiert das Jahres-Investment vollst&auml;ndig</div>
+        </div>
+
+        <div class="note-box">
+          <div class="note-text" id="out_note">Konservative Basis: 2.200&nbsp;&euro;/Monat Retainer (26.400&nbsp;&euro;/Jahr). CoI: 4.500&nbsp;&euro; pro offener Einheit/Monat. Alle Angaben sind Sch&auml;tzungen &mdash; individuelle Werte variieren.</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function fmt(n) {
+  return n.toLocaleString('de-DE') + '\u00a0\u20AC';
+}
+function fmtPct(n) {
+  return n.toFixed(1).replace('.', ',') + '\u00a0%';
+}
+
+function update() {
+  const preis  = parseInt(document.getElementById('preis').value);
+  const marge  = parseInt(document.getElementById('marge').value) / 100;
+  const we     = parseInt(document.getElementById('we').value);
+  const portal = parseInt(document.getElementById('portal').value);
+  const retainer = 2200;
+  const retainerJahr = retainer * 12;
+  const coi_per_we = 4500;
+
+  const margeEinheit = Math.round(preis * marge);
+  const coiGesamt = we * coi_per_we;
+  const einsparung = Math.max(0, portal - retainer);
+  const ratioRetainer = (retainerJahr / margeEinheit * 100);
+
+  document.getElementById('preis_v').innerHTML  = fmt(preis);
+  document.getElementById('marge_v').textContent = marge * 100 + '\u00a0%';
+  document.getElementById('we_v').textContent    = we + '\u00a0WE';
+  document.getElementById('portal_v').innerHTML  = fmt(portal);
+
+  document.getElementById('out_marge').innerHTML   = fmt(margeEinheit);
+  document.getElementById('out_coi').innerHTML     = fmt(coiGesamt);
+  document.getElementById('out_save').innerHTML    = einsparung > 0 ? fmt(einsparung) : '0\u00a0\u20AC';
+  document.getElementById('out_ratio').textContent = fmtPct(ratioRetainer);
+
+  // Break-even: wie viele Einheiten braucht es
+  const einheitenFuerBreakEven = Math.ceil(retainerJahr / margeEinheit);
+  document.getElementById('out_breakeven').textContent = einheitenFuerBreakEven === 1
+    ? '1 zus\u00e4tzliche Einheit'
+    : einheitenFuerBreakEven + ' zus\u00e4tzliche Einheiten';
+
+  document.getElementById('out_note').innerHTML =
+    'Basis: 2.200\u00a0\u20AC/Monat (26.400\u00a0\u20AC/Jahr). Marge pro Einheit: ' +
+    fmt(margeEinheit) + '. CoI: 4.500\u00a0\u20AC pro offener Einheit/Monat. Alle Angaben sind Sch\u00e4tzungen.';
+}
+
+['preis','marge','we','portal'].forEach(id => {
+  document.getElementById(id).addEventListener('input', update);
+});
+update();
+</script>
+</body>
+</html>
