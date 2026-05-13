@@ -27,59 +27,75 @@
 
   .body { flex:1;display:flex;gap:2.5vw;padding:0 4.5vw 2vh;min-height:0;align-items:center; }
 
-  /* LEFT — Inputs */
-  .left { width:38vw;flex-shrink:0;display:flex;flex-direction:column;gap:1.4vh; }
+  /* ── LEFT: Inputs ── */
+  .left { width:36vw;flex-shrink:0;display:flex;flex-direction:column;gap:1.6vh; }
 
-  .anchor-box {
-    border-radius:12px;
-    background:rgba(91,143,241,0.07);border:1px solid rgba(91,143,241,0.2);
-    padding:clamp(12px,1.3vh,18px) clamp(14px,1.4vw,20px);
-  }
-  .anchor-text { font-size:clamp(13px,1.05vw,17px);color:rgba(255,255,255,0.85);line-height:1.55; }
-  .anchor-text strong { color:#ffffff;font-weight:700; }
+  .anchor-box { border-radius:12px;background:rgba(91,143,241,0.07);border:1px solid rgba(91,143,241,0.2);padding:clamp(10px,1.1vh,15px) clamp(14px,1.4vw,20px); }
+  .anchor-text { font-size:clamp(13px,1.05vw,17px);color:rgba(255,255,255,0.85);line-height:1.5; }
+  .anchor-text strong { color:#ffffff; }
   .anchor-text em { font-style:normal;color:#5b8ff1;font-weight:700; }
 
   .inputs-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4); }
-
   .input-grid { display:grid;grid-template-columns:1fr 1fr;gap:1vh 1.2vw; }
-
-  .input-row { display:flex;flex-direction:column;gap:0.4vh; }
-  .input-lbl { font-size:clamp(10px,0.82vw,13px);font-weight:700;color:rgba(255,255,255,0.55);letter-spacing:0.06em; }
+  .input-row { display:flex;flex-direction:column;gap:0.5vh; }
+  .input-lbl { font-size:clamp(10px,0.82vw,13px);font-weight:700;color:rgba(255,255,255,0.55); }
   .input-wrap { display:flex;align-items:center;gap:0.5vw; }
-  input[type=range] {
-    flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;
-    background:rgba(91,143,241,0.25);outline:none;cursor:pointer;
-  }
+  input[type=range] { flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:rgba(91,143,241,0.25);outline:none;cursor:pointer; }
   input[type=range]::-webkit-slider-thumb { -webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#5b8ff1;cursor:pointer;box-shadow:0 0 6px rgba(91,143,241,0.5); }
   .input-val { font-size:clamp(12px,1vw,16px);font-weight:700;color:#5b8ff1;min-width:5vw;text-align:right; }
 
-  /* RIGHT — Outputs */
-  .right { flex:1;display:flex;flex-direction:column;gap:1.4vh; }
+  /* ── RIGHT: Outputs ── */
+  .right { flex:1;display:flex;flex-direction:column;gap:1.2vh; }
 
-  .output-grid { display:grid;grid-template-columns:1fr 1fr;gap:1vh; }
-  .out-card { border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);padding:clamp(12px,1.3vh,18px) clamp(12px,1.2vw,18px);display:flex;flex-direction:column;gap:0.3vh; }
-  .out-card.hero { background:rgba(91,143,241,0.08);border-color:rgba(91,143,241,0.25); }
-  .out-lbl { font-size:clamp(9px,0.75vw,12px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4); }
-  .out-card.hero .out-lbl { color:#5b8ff1; }
-  .out-val { font-size:clamp(20px,2.4vw,38px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
-  .out-val.red { background:none;-webkit-background-clip:unset;background-clip:unset;color:#ff6b6b; }
-  .out-val.green { background:none;-webkit-background-clip:unset;background-clip:unset;color:#34c759; }
-  .out-sub { font-size:clamp(10px,0.8vw,13px);color:rgba(255,255,255,0.5);margin-top:0.2vh; }
+  /* Beurkundungen Vergleich */
+  .beur-compare { display:flex;gap:1vw;flex-shrink:0; }
+  .beur-box { flex:1;border-radius:12px;padding:clamp(12px,1.3vh,18px) clamp(12px,1.2vw,18px);display:flex;flex-direction:column;gap:0.3vh; }
+  .beur-box.without { background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07); }
+  .beur-box.with { background:rgba(52,199,89,0.08);border:1px solid rgba(52,199,89,0.25);box-shadow:0 0 20px rgba(52,199,89,0.06); }
+  .beur-lbl { font-size:clamp(9px,0.75vw,12px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase; }
+  .beur-box.without .beur-lbl { color:rgba(255,255,255,0.35); }
+  .beur-box.with .beur-lbl { color:#34c759; }
+  .beur-val { font-size:clamp(28px,3.5vw,54px);font-weight:900;line-height:1; }
+  .beur-box.without .beur-val { color:rgba(255,255,255,0.25); }
+  .beur-box.with .beur-val { color:#34c759; }
+  .beur-sub { font-size:clamp(10px,0.8vw,13px);color:rgba(255,255,255,0.5); }
+  .beur-box.with .beur-sub { color:rgba(52,199,89,0.7); }
 
-  .breakeven-card {
+  /* Hero Mehrertrag */
+  .mehrertrag-hero {
     border-radius:14px;
-    background:linear-gradient(145deg,rgba(52,199,89,0.10),rgba(52,199,89,0.03));
-    border:1px solid rgba(52,199,89,0.25);
+    background:linear-gradient(145deg,rgba(52,199,89,0.12),rgba(52,199,89,0.04));
+    border:1px solid rgba(52,199,89,0.3);
+    box-shadow:0 0 40px rgba(52,199,89,0.10);
     padding:clamp(14px,1.5vh,20px) clamp(14px,1.4vw,20px);
-    text-align:center;position:relative;overflow:hidden;
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;gap:1.5vw;
   }
-  .breakeven-card::before { content:'';position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(52,199,89,0.5),transparent); }
-  .breakeven-lbl { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(52,199,89,0.8);margin-bottom:0.5vh; }
-  .breakeven-val { font-size:clamp(28px,3.5vw,56px);font-weight:900;color:#34c759;line-height:1; }
-  .breakeven-sub { font-size:clamp(12px,0.95vw,16px);color:rgba(255,255,255,0.7);margin-top:0.4vh; }
+  .mehrertrag-hero::before { content:'';position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(52,199,89,0.5),transparent); }
+  .mh-left { flex:1; }
+  .mh-lbl { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(52,199,89,0.8);margin-bottom:0.3vh; }
+  .mh-val { font-size:clamp(28px,3.8vw,60px);font-weight:900;color:#34c759;line-height:1; }
+  .mh-sub { font-size:clamp(11px,0.88vw,14px);color:rgba(255,255,255,0.65);margin-top:0.3vh; }
+  .mh-right { flex-shrink:0;text-align:center; }
+  .mh-invest-lbl { font-size:clamp(9px,0.72vw,11px);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.2vh; }
+  .mh-invest-val { font-size:clamp(16px,1.8vw,28px);font-weight:900;color:rgba(255,255,255,0.45); }
+  .mh-divider { width:1px;align-self:stretch;background:rgba(52,199,89,0.2); }
 
-  .note-box { border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:clamp(8px,1vh,13px) clamp(12px,1.2vw,18px); }
-  .note-text { font-size:clamp(10px,0.82vw,13px);color:rgba(255,255,255,0.4);font-style:italic;line-height:1.5; }
+  /* Bottom Row */
+  .bottom-row { display:flex;gap:1vw;flex-shrink:0; }
+
+  .be-card { flex:1;border-radius:12px;background:rgba(91,143,241,0.08);border:1px solid rgba(91,143,241,0.22);padding:clamp(10px,1.1vh,15px) clamp(12px,1.2vw,18px);display:flex;flex-direction:column;gap:0.3vh; }
+  .be-lbl { font-size:clamp(9px,0.75vw,12px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5b8ff1; }
+  .be-val { font-size:clamp(18px,2.2vw,34px);font-weight:900;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1; }
+  .be-sub { font-size:clamp(10px,0.78vw,13px);color:rgba(255,255,255,0.55); }
+
+  .coi-card { flex:1;border-radius:12px;background:rgba(255,100,80,0.06);border:1px solid rgba(255,100,80,0.18);padding:clamp(10px,1.1vh,15px) clamp(12px,1.2vw,18px);display:flex;flex-direction:column;gap:0.3vh; }
+  .coi-lbl { font-size:clamp(9px,0.75vw,12px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,100,80,0.7); }
+  .coi-val { font-size:clamp(18px,2.2vw,34px);font-weight:900;color:#ff6b6b;line-height:1; }
+  .coi-sub { font-size:clamp(10px,0.78vw,13px);color:rgba(255,255,255,0.45); }
+
+  .note-box { border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:clamp(7px,0.9vh,12px) clamp(12px,1.2vw,18px); }
+  .note-text { font-size:clamp(10px,0.78vw,12px);color:rgba(255,255,255,0.38);font-style:italic;line-height:1.5; }
 </style>
 </head>
 <body>
@@ -92,20 +108,18 @@
     </div>
     <div class="slide-title">
       <div class="eyebrow">Ihr Projekt &mdash; Ihre Zahlen</div>
-      <div class="headline">Was rechnet sich <span class="hl">f&uuml;r Sie?</span></div>
+      <div class="headline">Was das System <span class="hl">f&uuml;r Sie bedeutet.</span></div>
     </div>
     <div class="body">
 
-      <!-- LEFT -->
+      <!-- LEFT: Inputs -->
       <div class="left">
         <div class="anchor-box">
           <div class="anchor-text">
-            Eine zus&auml;tzlich verkaufte Einheit hat in Ihrer Gr&ouml;&szlig;enordnung einen Margenwert von <em>40.000&ndash;80.000&nbsp;&euro;</em>. Davor relativiert sich die Frage der monatlichen Investition.
+            Eine zus&auml;tzlich verkaufte Einheit hat in Ihrer Gr&ouml;&szlig;enordnung einen Margenwert von <em>40.000&ndash;80.000&nbsp;&euro;</em>. Davor relativiert sich jede Frage zur monatlichen Investition.
           </div>
         </div>
-
         <div class="inputs-label">Ihr Projekt</div>
-
         <div class="input-grid">
           <div class="input-row">
             <div class="input-lbl">Verkaufspreis pro Einheit</div>
@@ -129,51 +143,65 @@
             </div>
           </div>
           <div class="input-row">
-            <div class="input-lbl">Aktuelles Portal-Budget/Monat</div>
+            <div class="input-lbl">Anfragen pro Monat</div>
             <div class="input-wrap">
-              <input type="range" id="portal" min="500" max="5000" step="100" value="2000">
-              <div class="input-val" id="portal_v">2.000&nbsp;&euro;</div>
+              <input type="range" id="anfragen" min="20" max="200" step="5" value="50">
+              <div class="input-val" id="anfragen_v">50 / Mo.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- RIGHT -->
+      <!-- RIGHT: Outputs -->
       <div class="right">
-        <div class="output-grid">
-          <div class="out-card hero">
-            <div class="out-lbl">Marge pro Einheit</div>
-            <div class="out-val" id="out_marge">57.000&nbsp;&euro;</div>
-            <div class="out-sub">Konservative Rechnung</div>
+
+        <!-- Beurkundungen: Mit vs. Ohne -->
+        <div class="beur-compare">
+          <div class="beur-box without">
+            <div class="beur-lbl">Ohne System / Jahr</div>
+            <div class="beur-val" id="out_ohne">3</div>
+            <div class="beur-sub">~0,5&nbsp;% Konversion (Portal-&Oslash;)</div>
           </div>
-          <div class="out-card">
-            <div class="out-lbl">CoI gesamt &mdash; pro Monat</div>
-            <div class="out-val red" id="out_coi">90.000&nbsp;&euro;</div>
-            <div class="out-sub">bei 20 offenen Einheiten</div>
-          </div>
-          <div class="out-card">
-            <div class="out-lbl">Einsparung vs. Portal-Budget</div>
-            <div class="out-val" id="out_save">0&nbsp;&euro;</div>
-            <div class="out-sub">pro Monat &mdash; gleiche Anfragen</div>
-          </div>
-          <div class="out-card">
-            <div class="out-lbl">Retainer p.a. vs. 1 Einheit</div>
-            <div class="out-val" id="out_ratio">2,2&nbsp;%</div>
-            <div class="out-sub">der Marge einer einzigen Einheit</div>
+          <div class="beur-box with">
+            <div class="beur-lbl">Mit System / Jahr &#8593;</div>
+            <div class="beur-val" id="out_mit">12</div>
+            <div class="beur-sub">~2,0&nbsp;% Konversion (aus unseren Cases)</div>
           </div>
         </div>
 
-        <div class="breakeven-card">
-          <div class="breakeven-lbl">Break-Even &mdash; bereits bei</div>
-          <div class="breakeven-val" id="out_breakeven">1 Einheit</div>
-          <div class="breakeven-sub" id="out_be_sub">amortisiert das Jahres-Investment vollst&auml;ndig</div>
+        <!-- Mehrertrag Hero -->
+        <div class="mehrertrag-hero">
+          <div class="mh-left">
+            <div class="mh-lbl">Mehrertrag p.a. &mdash; konservative Rechnung</div>
+            <div class="mh-val" id="out_mehrertrag">513.000&nbsp;&euro;</div>
+            <div class="mh-sub" id="out_mehr_sub">9 zus&auml;tzliche Beurkundungen &times; 57.000&nbsp;&euro; Marge</div>
+          </div>
+          <div class="mh-divider"></div>
+          <div class="mh-right">
+            <div class="mh-invest-lbl">Investment p.a.</div>
+            <div class="mh-invest-val">26.400&nbsp;&euro;</div>
+          </div>
+        </div>
+
+        <!-- Bottom Row -->
+        <div class="bottom-row">
+          <div class="be-card">
+            <div class="be-lbl">Break-Even</div>
+            <div class="be-val" id="out_be">1 Einheit</div>
+            <div class="be-sub">amortisiert das Jahres-Investment</div>
+          </div>
+          <div class="coi-card">
+            <div class="coi-lbl">Kapitalkosten ohne System / Mo.</div>
+            <div class="coi-val" id="out_coi">90.000&nbsp;&euro;</div>
+            <div class="coi-sub" id="out_coi_sub">bei 20 offenen Einheiten</div>
+          </div>
         </div>
 
         <div class="note-box">
-          <div class="note-text" id="out_note">Konservative Basis: 2.200&nbsp;&euro;/Monat Retainer (26.400&nbsp;&euro;/Jahr). CoI: 4.500&nbsp;&euro; pro offener Einheit/Monat. Alle Angaben sind Sch&auml;tzungen &mdash; individuelle Werte variieren.</div>
+          <div class="note-text" id="out_note">Konversion: 2,0&nbsp;% mit System (belegt in Cases) vs. 0,5&nbsp;% Portal-Durchschnitt. Investment: 26.400&nbsp;&euro;/Jahr. CoI: 4.500&nbsp;&euro;/Einheit/Monat. Alle Angaben konservative Sch&auml;tzungen.</div>
         </div>
-      </div>
 
+      </div>
     </div>
     <div class="footer">
       <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
@@ -183,49 +211,53 @@
 </div>
 
 <script>
-function fmt(n) {
-  return n.toLocaleString('de-DE') + '\u00a0\u20AC';
-}
-function fmtPct(n) {
-  return n.toFixed(1).replace('.', ',') + '\u00a0%';
-}
+function fmt(n) { return Math.round(n).toLocaleString('de-DE') + '\u00a0\u20AC'; }
 
 function update() {
-  const preis  = parseInt(document.getElementById('preis').value);
-  const marge  = parseInt(document.getElementById('marge').value) / 100;
-  const we     = parseInt(document.getElementById('we').value);
-  const portal = parseInt(document.getElementById('portal').value);
-  const retainer = 2200;
-  const retainerJahr = retainer * 12;
+  const preis    = parseInt(document.getElementById('preis').value);
+  const marge    = parseInt(document.getElementById('marge').value) / 100;
+  const we       = parseInt(document.getElementById('we').value);
+  const anfragen = parseInt(document.getElementById('anfragen').value);
+  const retainerJahr = 26400;
   const coi_per_we = 4500;
 
   const margeEinheit = Math.round(preis * marge);
-  const coiGesamt = we * coi_per_we;
-  const einsparung = Math.max(0, portal - retainer);
-  const ratioRetainer = (retainerJahr / margeEinheit * 100);
 
-  document.getElementById('preis_v').innerHTML  = fmt(preis);
-  document.getElementById('marge_v').textContent = marge * 100 + '\u00a0%';
-  document.getElementById('we_v').textContent    = we + '\u00a0WE';
-  document.getElementById('portal_v').innerHTML  = fmt(portal);
+  // Beurkundungen
+  const beurOhne = Math.round(anfragen * 0.005 * 12 * 10) / 10; // 0.5% × 12 Monate
+  const beurMit  = Math.round(anfragen * 0.020 * 12 * 10) / 10; // 2.0% × 12 Monate
+  const mehrBeur = Math.max(0, beurMit - beurOhne);
 
-  document.getElementById('out_marge').innerHTML   = fmt(margeEinheit);
-  document.getElementById('out_coi').innerHTML     = fmt(coiGesamt);
-  document.getElementById('out_save').innerHTML    = einsparung > 0 ? fmt(einsparung) : '0\u00a0\u20AC';
-  document.getElementById('out_ratio').textContent = fmtPct(ratioRetainer);
+  // Mehrertrag
+  const mehrertrag = Math.round(mehrBeur * margeEinheit);
 
-  // Break-even: wie viele Einheiten braucht es
-  const einheitenFuerBreakEven = Math.ceil(retainerJahr / margeEinheit);
-  document.getElementById('out_breakeven').textContent = einheitenFuerBreakEven === 1
-    ? '1 zus\u00e4tzliche Einheit'
-    : einheitenFuerBreakEven + ' zus\u00e4tzliche Einheiten';
+  // CoI
+  const coi = we * coi_per_we;
 
+  // Break-even
+  const be = Math.ceil(retainerJahr / margeEinheit);
+
+  // Update inputs display
+  document.getElementById('preis_v').innerHTML    = fmt(preis);
+  document.getElementById('marge_v').textContent  = (marge * 100) + '\u00a0%';
+  document.getElementById('we_v').textContent     = we + '\u00a0WE';
+  document.getElementById('anfragen_v').textContent = anfragen + ' / Mo.';
+
+  // Update outputs
+  document.getElementById('out_ohne').textContent = beurOhne % 1 === 0 ? beurOhne : beurOhne.toFixed(1);
+  document.getElementById('out_mit').textContent  = beurMit % 1 === 0 ? beurMit : beurMit.toFixed(1);
+  document.getElementById('out_mehrertrag').innerHTML = fmt(mehrertrag);
+  document.getElementById('out_mehr_sub').textContent =
+    Math.round(mehrBeur * 10) / 10 + ' zus\u00e4tzliche Beurkundungen \u00d7 ' + Math.round(margeEinheit).toLocaleString('de-DE') + '\u00a0\u20AC Marge';
+  document.getElementById('out_be').textContent = be === 1 ? '1 Einheit' : be + ' Einheiten';
+  document.getElementById('out_coi').innerHTML = fmt(coi);
+  document.getElementById('out_coi_sub').textContent = 'bei ' + we + ' offenen Einheiten';
   document.getElementById('out_note').innerHTML =
-    'Basis: 2.200\u00a0\u20AC/Monat (26.400\u00a0\u20AC/Jahr). Marge pro Einheit: ' +
-    fmt(margeEinheit) + '. CoI: 4.500\u00a0\u20AC pro offener Einheit/Monat. Alle Angaben sind Sch\u00e4tzungen.';
+    'Konversion: 2,0\u00a0% mit System (belegt in Cases) vs. 0,5\u00a0% Portal-\u00d8. Investment: 26.400\u00a0\u20AC/Jahr. CoI: 4.500\u00a0\u20AC/Einheit/Monat. Marge pro Einheit: ' +
+    Math.round(margeEinheit).toLocaleString('de-DE') + '\u00a0\u20AC. Konservative Sch\u00e4tzungen.';
 }
 
-['preis','marge','we','portal'].forEach(id => {
+['preis','marge','we','anfragen'].forEach(id => {
   document.getElementById(id).addEventListener('input', update);
 });
 update();
