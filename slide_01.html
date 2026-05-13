@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 01 – Diagnose</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;background:#2c313c;overflow:hidden;z-index:0; }
+  .bg { position:absolute;inset:0;background:radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.12) 0%,transparent 55%),radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.08) 0%,transparent 60%);pointer-events:none; }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em; }
+  .brand span { color:#5b8ff1; }
+  .slide-num { font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700; }
+  .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
+  .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
+  .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
+
+  /* Fixed Title */
+  .slide-title { flex-shrink:0;padding:6vh 4.5vw 1.5vh; }
+  .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1.8vh; }
+  .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
+  .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
+  .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+
+  /* Body */
+  .body { flex:1;display:flex;flex-direction:column;padding:0 4.5vw 2vh;gap:1.5vh;min-height:0;justify-content:center; }
+
+  /* Quote Grid */
+  .grid { display:grid;grid-template-columns:1fr 1fr;gap:1.4vw;flex-shrink:0; }
+
+  .quote-card {
+    border-radius:16px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:clamp(16px,1.8vh,26px) clamp(18px,1.8vw,26px);
+    display:flex;flex-direction:column;gap:1.2vh;
+    position:relative;overflow:hidden;
+  }
+  .quote-card::before { content:'\201E';position:absolute;top:-0.5vh;left:1.2vw;font-size:clamp(50px,6vw,90px);color:rgba(91,143,241,0.12);font-family:Georgia,serif;line-height:1;pointer-events:none; }
+
+  .quote-text {
+    font-size:clamp(14px,1.2vw,20px);font-weight:400;
+    color:rgba(255,255,255,0.88);line-height:1.65;
+    font-style:italic;padding-left:0.5vw;
+    position:relative;z-index:1;
+  }
+  .quote-text strong { font-style:normal;color:#ffffff;font-weight:700; }
+
+  .quote-reality {
+    font-size:clamp(11px,0.9vw,15px);font-weight:700;
+    color:#5b8ff1;letter-spacing:0.05em;
+    padding-left:0.5vw;position:relative;z-index:1;
+  }
+
+  /* Bottom strip */
+  .bottom-strip {
+    flex-shrink:0;
+    border-radius:12px;
+    background:linear-gradient(145deg,rgba(91,143,241,0.10) 0%,rgba(91,143,241,0.03) 100%);
+    border:1px solid rgba(91,143,241,0.22);
+    padding:clamp(12px,1.3vh,18px) clamp(18px,1.8vw,26px);
+    display:flex;align-items:center;gap:1.5vw;
+  }
+  .bs-icon { font-size:clamp(20px,2vw,30px);flex-shrink:0; }
+  .bs-text { flex:1;font-size:clamp(13px,1.05vw,18px);color:rgba(255,255,255,0.85);line-height:1.5;font-weight:400; }
+  .bs-text em { font-style:normal;color:#5b8ff1;font-weight:700; }
+</style>
+</head>
+<body>
+<div class="slide-wrap">
+  <div class="bg"></div>
+  <div class="slide">
+
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">01 / 11</div>
+    </div>
+
+    <div class="slide-title">
+      <div class="eyebrow">Wir kennen Ihre Welt</div>
+      <div class="headline">Was Bautr&auml;ger uns <span class="hl">beim ersten Gespr&auml;ch</span> erz&auml;hlen.</div>
+    </div>
+
+    <div class="body">
+
+      <div class="grid">
+
+        <div class="quote-card">
+          <div class="quote-text">
+            &bdquo;Wir bekommen Anfragen &uuml;ber ImmoScout &mdash; aber die meisten <strong>versanden im Tagesgesch&auml;ft</strong>. Keiner folgtnach, keiner wei&szlig; welcher Stand ist.&ldquo;
+          </div>
+          <div class="quote-reality">&#8594; Kein CRM, kein Nachfassprozess, kein System.</div>
+        </div>
+
+        <div class="quote-card">
+          <div class="quote-text">
+            &bdquo;Der Makler kostet uns <strong>3&ndash;6&nbsp;% pro Einheit</strong> &mdash; und priorisiert die einfachen Projekte. Unsere Restanten bleiben liegen.&ldquo;
+          </div>
+          <div class="quote-reality">&#8594; Bei 20 Einheiten: bis zu 380.000&nbsp;&euro; Provision.</div>
+        </div>
+
+        <div class="quote-card">
+          <div class="quote-text">
+            &bdquo;Die Bank will <strong>50&nbsp;% Vorverkauf</strong> bevor sie Mittel freigibt &mdash; aber wir kommen nicht schnell genug dorthin.&ldquo;
+          </div>
+          <div class="quote-reality">&#8594; Jeder Monat Verz&ouml;gerung: 2.500&ndash;4.500&nbsp;&euro; Kapitalkosten pro Einheit.</div>
+        </div>
+
+        <div class="quote-card">
+          <div class="quote-text">
+            &bdquo;Wir haben schon <strong>eine Agentur probiert</strong> &mdash; viel versprochen, wenig geliefert. Ich wei&szlig; nicht ob das mit uns liegt oder mit denen.&ldquo;
+          </div>
+          <div class="quote-reality">&#8594; Vertrieb war das Problem &mdash; nicht das Marketing.</div>
+        </div>
+
+      </div>
+
+      <div class="bottom-strip">
+        <div class="bs-icon">&#128161;</div>
+        <div class="bs-text">
+          Lead-Generierung ist nur <em>20&nbsp;% des Problems</em>. Wer Anfragen bekommt aber keinen strukturierten Vertriebsprozess hat, verliert den Gro&szlig;teil davon. Genau das l&ouml;sen wir.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
