@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 00 – neubau.marketing Closing Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;background:#2c313c;overflow:hidden;z-index:0; }
+
+  .bg {
+    position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 90vw 80vh at 100% -10%,rgba(91,143,241,0.14) 0%,transparent 55%),
+      radial-gradient(ellipse 60vw 60vh at -10% 100%,rgba(91,143,241,0.10) 0%,transparent 60%),
+      radial-gradient(ellipse 50vw 50vh at 50% 50%,rgba(91,143,241,0.04) 0%,transparent 70%);
+    pointer-events:none;
+    animation:bgpulse 7s ease-in-out infinite;
+  }
+  @keyframes bgpulse { 0%,100%{opacity:1;} 50%{opacity:0.7;} }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.055) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
+
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
+
+  /* Header */
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em; }
+  .brand span { color:#5b8ff1; }
+  .header-tag { font-size:clamp(11px,0.88vw,14px);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35); }
+
+  /* Center Content */
+  .center { flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4vh;text-align:center; }
+
+  .logo-wrap img { width:clamp(220px,26vw,400px);height:auto;display:block;animation:fadein 1s ease both; }
+  @keyframes fadein { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:translateY(0);} }
+
+  .divider { width:clamp(40px,4vw,60px);height:1px;background:rgba(91,143,241,0.5);animation:fadein 1s ease 0.3s both; }
+
+  .headline {
+    font-size:clamp(28px,3.2vw,52px);font-weight:900;line-height:1.1;
+    animation:fadein 1s ease 0.5s both;
+  }
+  .headline .dark { color:#ffffff; }
+  .headline .hl {
+    font-style:italic;
+    background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+
+  .subline {
+    font-size:clamp(14px,1.3vw,21px);font-weight:400;
+    color:rgba(255,255,255,0.65);line-height:1.6;
+    max-width:42vw;
+    animation:fadein 1s ease 0.7s both;
+  }
+
+  /* Pills */
+  .pills { display:flex;gap:1vw;align-items:center;animation:fadein 1s ease 0.9s both; }
+  .pill {
+    padding:0.5vh 1.2vw;border-radius:20px;
+    font-size:clamp(10px,0.85vw,14px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  }
+  .pill.blue { background:rgba(91,143,241,0.12);border:1px solid rgba(91,143,241,0.3);color:#5b8ff1; }
+  .pill.grey { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5); }
+
+  /* Footer */
+  .footer { padding:0 4.5vw 3vh;display:flex;align-items:center;justify-content:space-between;flex-shrink:0; }
+  .footer-text { font-size:clamp(11px,0.88vw,14px);font-weight:500;color:rgba(255,255,255,0.3);letter-spacing:0.08em; }
+</style>
+</head>
+<body>
+<div class="slide-wrap">
+  <div class="bg"></div>
+  <div class="slide">
+
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="header-tag">Vertraulich &middot; Closing Deck 2026</div>
+    </div>
+
+    <div class="center">
+      <div class="logo-wrap">
+        <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Logo/1.png" alt="neubau.marketing">
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="headline">
+        <span class="dark">Das Konversionssystem f&uuml;r</span><br>
+        <span class="hl">Neubauvermarktung im DACH-Raum.</span>
+      </div>
+
+      <div class="subline">
+        Mehr Anfragen generieren ist nur 20&nbsp;% des Problems.<br>
+        Die anderen 80&nbsp;% passieren im Vertrieb &mdash; genau dort setzen wir an.
+      </div>
+
+      <div class="pills">
+        <div class="pill blue">Kampagne</div>
+        <div class="pill grey">&plus;</div>
+        <div class="pill blue">CRM</div>
+        <div class="pill grey">&plus;</div>
+        <div class="pill blue">Vertriebsberatung</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">daniel@neubau.marketing &middot; olli@neubau.marketing</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
