@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 08 – Case bosch & co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;background:#2c313c;overflow:hidden;z-index:0; }
+  .bg { position:absolute;inset:0;background:radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.12) 0%,transparent 55%),radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.08) 0%,transparent 60%);pointer-events:none; }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em; }
+  .brand span { color:#5b8ff1; }
+  .slide-num { font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700; }
+  .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
+  .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
+  .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
+  .slide-title { flex-shrink:0;padding:6vh 4.5vw 1.5vh; }
+  .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1.8vh; }
+  .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
+  .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
+  .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .body { flex:1;display:flex;gap:2.5vw;padding:0 4.5vw 2vh;min-height:0;align-items:center; }
+
+  .left { flex:1;display:flex;flex-direction:column;gap:1.5vh; }
+  .case-tag { display:inline-flex;align-items:center;gap:0.6vw;padding:0.5vh 1vw;border-radius:20px;background:rgba(91,143,241,0.1);border:1px solid rgba(91,143,241,0.25);font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5b8ff1;width:fit-content; }
+  .case-sub { font-size:clamp(13px,1.05vw,17px);font-weight:400;color:rgba(255,255,255,0.62);line-height:1.5; }
+
+  .bento-grid { display:grid;grid-template-columns:1fr 1fr;gap:1vh; }
+  .bento { border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);padding:clamp(10px,1.1vh,15px) clamp(12px,1.2vw,17px);display:flex;flex-direction:column;gap:0.3vh;position:relative;overflow:hidden; }
+  .bento::after { content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.15),transparent); }
+  .bento.blue { background:rgba(91,143,241,0.07);border-color:rgba(91,143,241,0.22); }
+  .bento.hero { background:linear-gradient(145deg,rgba(91,143,241,0.13),rgba(91,143,241,0.04));border-color:rgba(91,143,241,0.35);box-shadow:0 0 30px rgba(91,143,241,0.12); }
+  .bento-lbl { font-size:clamp(9px,0.78vw,12px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45); }
+  .bento.blue .bento-lbl,.bento.hero .bento-lbl { color:#5b8ff1; }
+  .bento-val { font-size:clamp(20px,2.4vw,38px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .bento-val.green { background:none;-webkit-background-clip:unset;background-clip:unset;color:#34c759; }
+  .bento-sub { font-size:clamp(10px,0.8vw,13px);font-weight:500;color:rgba(255,255,255,0.55);line-height:1.3; }
+
+  .context-box { border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:clamp(10px,1.2vh,16px) clamp(12px,1.2vw,18px);display:flex;flex-direction:column;gap:0.6vh; }
+  .ctx-row { display:flex;align-items:flex-start;gap:0.8vw;font-size:clamp(12px,0.95vw,16px);color:rgba(255,255,255,0.78);line-height:1.4; }
+  .ctx-dot { width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px; }
+
+  .right { width:30vw;flex-shrink:0;display:flex;flex-direction:column;gap:1.4vh; }
+
+  .hero-stat {
+    border-radius:16px;
+    background:linear-gradient(145deg,rgba(91,143,241,0.12),rgba(91,143,241,0.04));
+    border:1px solid rgba(91,143,241,0.3);
+    box-shadow:0 0 50px rgba(91,143,241,0.10);
+    padding:clamp(16px,1.8vh,24px) clamp(16px,1.6vw,22px);
+    text-align:center;position:relative;overflow:hidden;
+  }
+  .hero-stat::before { content:'';position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.6),transparent); }
+  .hero-lbl { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#5b8ff1;margin-bottom:0.8vh; }
+  .hero-val { font-size:clamp(44px,6vw,96px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .hero-unit { font-size:clamp(12px,1.1vw,18px);font-weight:700;color:rgba(255,255,255,0.65);margin-top:0.4vh; }
+
+  .stats-strip { border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:clamp(10px,1.1vh,15px) clamp(14px,1.4vw,20px);display:flex;align-items:center;justify-content:space-between;gap:0.8vw; }
+  .stat-item { display:flex;flex-direction:column;align-items:center;gap:0.2vh; }
+  .stat-val { font-size:clamp(14px,1.5vw,22px);font-weight:900;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .stat-lbl { font-size:clamp(8px,0.7vw,11px);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.38);text-align:center; }
+  .stat-divider { width:1px;align-self:stretch;background:rgba(255,255,255,0.1); }
+
+  .crm-box { border-radius:12px;background:rgba(52,199,89,0.06);border:1px solid rgba(52,199,89,0.2);padding:clamp(10px,1.2vh,16px) clamp(14px,1.4vw,20px);display:flex;flex-direction:column;gap:0.6vh; }
+  .crm-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(52,199,89,0.8); }
+  .crm-row { display:flex;align-items:flex-start;gap:0.6vw;font-size:clamp(12px,0.92vw,15px);color:rgba(255,255,255,0.78);line-height:1.4; }
+  .crm-check { color:#34c759;flex-shrink:0; }
+</style>
+</head>
+<body>
+<div class="slide-wrap">
+  <div class="bg"></div>
+  <div class="slide">
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">08 / 11</div>
+    </div>
+    <div class="slide-title">
+      <div class="eyebrow">Case 03 &middot; Bautr&auml;ger &middot; Bayern</div>
+      <div class="headline">bosch &amp; co. &mdash; <span class="hl">M50 Gunzenhausen.</span></div>
+    </div>
+    <div class="body">
+      <div class="left">
+        <div class="case-tag">Kapitalanlage &middot; 10 Wochen aktiv &middot; abgeschlossen</div>
+        <div class="case-sub">101 Anfragen &middot; 2 Beurkundungen &middot; niedrigster CPL aus allen Cases</div>
+        <div class="bento-grid">
+          <div class="bento hero">
+            <div class="bento-lbl">Cost per Lead</div>
+            <div class="bento-val">18,21&nbsp;&euro;</div>
+            <div class="bento-sub">vs. Portal ~600&nbsp;&euro; = ~33&times; g&uuml;nstiger</div>
+          </div>
+          <div class="bento blue">
+            <div class="bento-lbl">Anfragen gesamt</div>
+            <div class="bento-val">101</div>
+            <div class="bento-sub">in 10 Wochen &middot; 1.839&nbsp;&euro; Budget</div>
+          </div>
+          <div class="bento blue">
+            <div class="bento-lbl">LP Conversion</div>
+            <div class="bento-val">6,8&nbsp;%</div>
+            <div class="bento-sub">101 / 1.487 Besucher</div>
+          </div>
+          <div class="bento blue">
+            <div class="bento-lbl">Konversionsrate</div>
+            <div class="bento-val">2,0&nbsp;%</div>
+            <div class="bento-sub">2 Beurkundungen &middot; ~4&times; besser als Portal</div>
+          </div>
+        </div>
+        <div class="context-box">
+          <div class="ctx-row"><div class="ctx-dot" style="background:#ff6b6b;"></div>Vorher: Excel-Verwaltung, kein Nachfassprozess</div>
+          <div class="ctx-row"><div class="ctx-dot" style="background:#34c759;"></div>2 Beurkundungen in 10 Wochen &middot; vollst&auml;ndige CRM-Implementierung</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="hero-stat">
+          <div class="hero-lbl">G&uuml;nstigster CPL aller Cases</div>
+          <div class="hero-val">18,21&nbsp;&euro;</div>
+          <div class="hero-unit">~33&times; g&uuml;nstiger als Immobilienportal</div>
+        </div>
+        <div class="stats-strip">
+          <div class="stat-item">
+            <div class="stat-val">1.839&nbsp;&euro;</div>
+            <div class="stat-lbl">Mediabudget</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-val">2</div>
+            <div class="stat-lbl">Beurkundungen</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-val">10 Wo.</div>
+            <div class="stat-lbl">Aktive Laufzeit</div>
+          </div>
+        </div>
+        <div class="crm-box">
+          <div class="crm-label">Zus&auml;tzlich &mdash; Neobau Solutions CRM</div>
+          <div class="crm-row"><div class="crm-check">&#10003;</div>Vollst&auml;ndige CRM-Implementierung</div>
+          <div class="crm-row"><div class="crm-check">&#10003;</div>Pipelines, Automatisierung, Dashboards</div>
+          <div class="crm-row"><div class="crm-check">&#10003;</div>Strukturierter Vertriebsprozess ab Tag 1</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
