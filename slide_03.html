@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 03 – Unser Ansatz</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;background:#2c313c;overflow:hidden;z-index:0; }
+  .bg { position:absolute;inset:0;background:radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.12) 0%,transparent 55%),radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.08) 0%,transparent 60%);pointer-events:none; }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em; }
+  .brand span { color:#5b8ff1; }
+  .slide-num { font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700; }
+  .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
+  .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
+  .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
+
+  .slide-title { flex-shrink:0;padding:6vh 4.5vw 1.5vh; }
+  .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1.8vh; }
+  .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
+  .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
+  .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+
+  .body { flex:1;display:flex;flex-direction:column;padding:0 4.5vw 2vh;gap:2vh;min-height:0;justify-content:center; }
+
+  /* ── FLOW ── */
+  .flow { display:flex;align-items:center;gap:0;flex-shrink:0; }
+
+  .flow-step {
+    flex:1;border-radius:16px;
+    padding:clamp(16px,1.8vh,26px) clamp(14px,1.4vw,20px);
+    display:flex;flex-direction:column;gap:1.2vh;
+    position:relative;overflow:hidden;
+    text-align:center;align-items:center;
+  }
+  .flow-step.camp { background:rgba(91,143,241,0.08);border:1px solid rgba(91,143,241,0.25); }
+  .flow-step.crm  { background:rgba(91,143,241,0.12);border:1px solid rgba(91,143,241,0.35);box-shadow:0 0 40px rgba(91,143,241,0.1); }
+  .flow-step.vert { background:rgba(52,199,89,0.07);border:1px solid rgba(52,199,89,0.22); }
+  .flow-step.result { background:linear-gradient(145deg,rgba(91,143,241,0.15),rgba(91,143,241,0.05));border:1px solid rgba(91,143,241,0.4);box-shadow:0 0 50px rgba(91,143,241,0.12); }
+
+  .flow-step::after { content:'';position:absolute;top:0;left:5%;right:5%;height:1px; }
+  .flow-step.camp::after  { background:linear-gradient(90deg,transparent,rgba(91,143,241,0.4),transparent); }
+  .flow-step.crm::after   { background:linear-gradient(90deg,transparent,rgba(91,143,241,0.6),transparent); }
+  .flow-step.vert::after  { background:linear-gradient(90deg,transparent,rgba(52,199,89,0.4),transparent); }
+  .flow-step.result::after { background:linear-gradient(90deg,transparent,rgba(91,143,241,0.7),transparent); }
+
+  .flow-icon { font-size:clamp(24px,2.8vw,42px); }
+  .flow-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase; }
+  .flow-step.camp .flow-label  { color:#5b8ff1; }
+  .flow-step.crm .flow-label   { color:#5b8ff1; }
+  .flow-step.vert .flow-label  { color:#34c759; }
+  .flow-step.result .flow-label { color:#5b8ff1; }
+
+  .flow-title { font-size:clamp(16px,1.5vw,24px);font-weight:900;color:#ffffff;line-height:1.2; }
+  .flow-desc { font-size:clamp(11px,0.9vw,15px);color:rgba(255,255,255,0.62);line-height:1.45; }
+
+  /* Arrow */
+  .flow-arrow { font-size:clamp(18px,2vw,30px);color:rgba(91,143,241,0.5);flex-shrink:0;padding:0 0.8vw;font-weight:900; }
+
+  /* ── DIFFERENTIATORS ── */
+  .diffs { display:flex;gap:1.4vw;flex-shrink:0; }
+
+  .diff-card {
+    flex:1;border-radius:12px;
+    background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+    padding:clamp(12px,1.3vh,18px) clamp(14px,1.4vw,20px);
+    display:flex;align-items:flex-start;gap:0.8vw;
+  }
+  .diff-icon { font-size:clamp(16px,1.5vw,22px);flex-shrink:0;margin-top:1px; }
+  .diff-text { flex:1; }
+  .diff-title { font-size:clamp(13px,1.05vw,17px);font-weight:700;color:#ffffff;line-height:1.2;margin-bottom:0.3vh; }
+  .diff-sub { font-size:clamp(11px,0.88vw,14px);color:rgba(255,255,255,0.58);line-height:1.4; }
+</style>
+</head>
+<body>
+<div class="slide-wrap">
+  <div class="bg"></div>
+  <div class="slide">
+
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">03 / 11</div>
+    </div>
+
+    <div class="slide-title">
+      <div class="eyebrow">Das System</div>
+      <div class="headline">Kampagne trifft <span class="hl">Vertrieb.</span></div>
+    </div>
+
+    <div class="body">
+
+      <!-- FLOW -->
+      <div class="flow">
+
+        <div class="flow-step camp">
+          <div class="flow-icon">&#128202;</div>
+          <div class="flow-label">Schritt 1</div>
+          <div class="flow-title">Kampagne</div>
+          <div class="flow-desc">Meta Ads, Landingpage, Creatives &mdash; qualifizierte Anfragen zum niedrigsten CPL.</div>
+        </div>
+
+        <div class="flow-arrow">&#8594;</div>
+
+        <div class="flow-step crm">
+          <div class="flow-icon">&#128203;</div>
+          <div class="flow-label">Schritt 2</div>
+          <div class="flow-title">Neobau Solutions CRM</div>
+          <div class="flow-desc">Jede Anfrage landet strukturiert im CRM. Kein Interessent geht verloren.</div>
+        </div>
+
+        <div class="flow-arrow">&#8594;</div>
+
+        <div class="flow-step vert">
+          <div class="flow-icon">&#127919;</div>
+          <div class="flow-label">Schritt 3</div>
+          <div class="flow-title">Vertriebsberatung</div>
+          <div class="flow-desc">Gespr&auml;chsf&uuml;hrung, Nachfass, Reaktionszeit &mdash; wir coachen den Abschluss.</div>
+        </div>
+
+        <div class="flow-arrow">&#8594;</div>
+
+        <div class="flow-step result">
+          <div class="flow-icon">&#9989;</div>
+          <div class="flow-label">Ergebnis</div>
+          <div class="flow-title">Planbare Beurkundungen</div>
+          <div class="flow-desc">Nicht mehr Gl&uuml;ck &mdash; sondern ein reproduzierbares System.</div>
+        </div>
+
+      </div>
+
+      <!-- DIFFERENTIATORS -->
+      <div class="diffs">
+
+        <div class="diff-card">
+          <div class="diff-icon">&#9940;</div>
+          <div class="diff-text">
+            <div class="diff-title">Kein Dienstleister</div>
+            <div class="diff-sub">Wir arbeiten als Wachstumspartner &mdash; nicht als Agentur die Auftr&auml;ge abarbeitet.</div>
+          </div>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-icon">&#128222;</div>
+          <div class="diff-text">
+            <div class="diff-title">W&ouml;chentlicher Kontakt</div>
+            <div class="diff-sub">Fester Rhythmus: wöchentliches Meeting, monatliches Strategiegespr&auml;ch.</div>
+          </div>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-icon">&#128200;</div>
+          <div class="diff-text">
+            <div class="diff-title">Vollst&auml;ndige Transparenz</div>
+            <div class="diff-sub">Alle Konten, alle Daten, alle KPIs &mdash; jederzeit einsehbar. Keine Black Box.</div>
+          </div>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-icon">&#128197;</div>
+          <div class="diff-text">
+            <div class="diff-title">Monatlich k&uuml;ndbar</div>
+            <div class="diff-sub">Nach Mindestlaufzeit monatliche Kündigung &mdash; kein Knebelvertrag.</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
