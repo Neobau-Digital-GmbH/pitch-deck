@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 10 – Risk Mitigation</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;background:#2c313c;overflow:hidden;z-index:0; }
+  .bg { position:absolute;inset:0;background:radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.12) 0%,transparent 55%),radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.08) 0%,transparent 60%);pointer-events:none; }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em; }
+  .brand span { color:#5b8ff1; }
+  .slide-num { font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700; }
+  .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
+  .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
+  .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
+  .slide-title { flex-shrink:0;padding:6vh 4.5vw 1.5vh; }
+  .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1.8vh; }
+  .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
+  .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
+  .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .body { flex:1;display:flex;flex-direction:column;padding:0 4.5vw 2vh;gap:1.8vh;min-height:0;justify-content:center; }
+
+  /* ── RISK GRID ── */
+  .risk-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.4vw;flex-shrink:0; }
+
+  .risk-card {
+    border-radius:16px;
+    background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);
+    padding:clamp(18px,2vh,28px) clamp(16px,1.6vw,24px);
+    display:flex;flex-direction:column;gap:1.4vh;
+    position:relative;overflow:hidden;
+  }
+  .risk-card::after { content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.18),transparent); }
+
+  .risk-icon { font-size:clamp(24px,2.8vw,42px);flex-shrink:0; }
+  .risk-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5b8ff1; }
+  .risk-title { font-size:clamp(18px,1.8vw,28px);font-weight:900;color:#ffffff;line-height:1.15; }
+  .risk-divider { height:1px;background:rgba(91,143,241,0.15); }
+  .risk-points { display:flex;flex-direction:column;gap:0.8vh; }
+  .risk-point { display:flex;align-items:flex-start;gap:0.6vw; }
+  .risk-dot { width:5px;height:5px;border-radius:50%;background:#5b8ff1;flex-shrink:0;margin-top:5px; }
+  .risk-text { font-size:clamp(12px,0.95vw,16px);color:rgba(255,255,255,0.78);line-height:1.45; }
+
+  /* ── BOTTOM ── */
+  .bottom-strip {
+    flex-shrink:0;border-radius:12px;
+    background:linear-gradient(145deg,rgba(91,143,241,0.08),rgba(91,143,241,0.03));
+    border:1px solid rgba(91,143,241,0.18);
+    padding:clamp(12px,1.3vh,18px) clamp(18px,1.8vw,26px);
+    display:flex;align-items:center;gap:1.5vw;
+  }
+  .bs-icon { font-size:clamp(18px,1.8vw,26px);flex-shrink:0; }
+  .bs-text { flex:1;font-size:clamp(13px,1.05vw,17px);color:rgba(255,255,255,0.85);line-height:1.5; }
+  .bs-text em { font-style:normal;color:#5b8ff1;font-weight:700; }
+</style>
+</head>
+<body>
+<div class="slide-wrap">
+  <div class="bg"></div>
+  <div class="slide">
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">10 / 11</div>
+    </div>
+    <div class="slide-title">
+      <div class="eyebrow">Ihr Risiko &mdash; unsere Antwort</div>
+      <div class="headline">Kein Lock-in. <span class="hl">Kein Knebelvertrag.</span></div>
+    </div>
+    <div class="body">
+
+      <div class="risk-grid">
+
+        <!-- 1 -->
+        <div class="risk-card">
+          <div class="risk-icon">&#128197;</div>
+          <div class="risk-label">Vertragslaufzeit</div>
+          <div class="risk-title">Monatlich k&uuml;ndbar</div>
+          <div class="risk-divider"></div>
+          <div class="risk-points">
+            <div class="risk-point"><div class="risk-dot"></div><div class="risk-text">3&ndash;6 Monate Mindestlaufzeit &mdash; danach monatliche K&uuml;ndigung</div></div>
+            <div class="risk-point"><div class="risk-dot"></div><div class="risk-text">Verl&auml;ngerung monatlich &mdash; keine langen Bindungsfristen</div></div>
+            <div class="risk-point"><div class="risk-dot"></div><div class="risk-text">K&uuml;ndigung schriftlich &mdash; rechtssicher und unkompliziert</div></div>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="risk-card">
+          <div class="risk-icon">&#128274;</div>
+          <div class="risk-label">Daten &amp; Zug&auml;nge</div>
+          <div class="risk-title">Alles geh&ouml;rt Ihnen</div>
+          <div class="risk-divider"></div>
+          <div class="risk-points">
+            <div class="risk-point"><div class="risk-dot"></div><div class="risk-text">Alle Werbekonten laufen auf Ihrem Business Manager</div></div>
+            <div class="risk-point"><div class="risk-dot"></div><div class="risk-text">Vollst&auml;ndige Daten&uuml;bergabe bei Vertragsende: Creatives, Landingpages, Kampagnen-History</div></div>
+            <div class="risk-point"><div class="risk-dot"></div><div class="risk-text">Kein Lock-in &mdash; Sie k&ouml;nnen jederzeit wechseln oder intern weitermachen</div></div>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="risk-card">
+          <div class="risk-icon">&#128270;</div>
+          <div class="risk-label">Wenn Ergebnisse ausbleiben</div>
+          <div class="risk-title">Klarer Eskalationspfad</div>
+          <div class="risk-divider"></div>
+          <div class="risk-points">
+            <div class="risk-point"><div class="risk-dot"></div><div class="risk-text">Nach 4 Wochen ohne Ergebnisse: Diagnose-Call mit konkretem Pivot-Plan</div></div>
+            <div class="risk-point"><div class="risk-dot"></div><div class="risk-text">Keine Ausreden &mdash; wir benennen das Problem und l&ouml;sen es</div></div>
+            <div class="risk-point"><div class="risk-dot"></div><div class="risk-text">Transparenz &uuml;ber jeden Schritt &mdash; Sie entscheiden immer mit</div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bottom-strip">
+        <div class="bs-icon">&#129304;</div>
+        <div class="bs-text">
+          Es ist absolut in Ordnung, jetzt Nein zu sagen. <em>Schlimmer w&auml;re ein h&ouml;fliches Vielleicht</em> &mdash; und in 6 Monaten sehen wir uns wieder mit denselben Zahlen und mehr verpasster Zeit.
+        </div>
+      </div>
+
+    </div>
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
