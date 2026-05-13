@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 02 – Problem & Urgency</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;background:#2c313c;overflow:hidden;z-index:0; }
+  .bg { position:absolute;inset:0;background:radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.12) 0%,transparent 55%),radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.08) 0%,transparent 60%);pointer-events:none; }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em; }
+  .brand span { color:#5b8ff1; }
+  .slide-num { font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700; }
+  .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
+  .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
+  .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
+
+  .slide-title { flex-shrink:0;padding:6vh 4.5vw 1.5vh; }
+  .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1.8vh; }
+  .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
+  .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
+  .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+
+  .body { flex:1;display:flex;flex-direction:column;padding:0 4.5vw 2vh;gap:1.8vh;min-height:0;justify-content:center; }
+
+  /* ── MAIN ── */
+  .main { display:flex;gap:1.8vw;flex-shrink:0; }
+
+  /* Market Cards */
+  .market-cards { display:flex;flex-direction:column;gap:1.2vh;flex:1; }
+
+  .mcard {
+    border-radius:14px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:clamp(14px,1.5vh,20px) clamp(16px,1.6vw,24px);
+    display:flex;align-items:center;gap:1.5vw;
+    position:relative;overflow:hidden;
+  }
+  .mcard::after { content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.15),transparent); }
+
+  .mcard-num {
+    font-size:clamp(28px,3.2vw,52px);font-weight:900;line-height:1;
+    background:linear-gradient(135deg,#5b8ff1,#7aaaf5);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    flex-shrink:0;min-width:8vw;text-align:right;
+  }
+  .mcard-num.red { background:none;-webkit-background-clip:unset;background-clip:unset;color:#ff6b6b; }
+
+  .mcard-divider { width:1px;align-self:stretch;background:rgba(255,255,255,0.1);flex-shrink:0; }
+
+  .mcard-text { flex:1; }
+  .mcard-title { font-size:clamp(14px,1.2vw,19px);font-weight:700;color:#ffffff;line-height:1.2;margin-bottom:0.3vh; }
+  .mcard-sub { font-size:clamp(11px,0.9vw,15px);color:rgba(255,255,255,0.58);line-height:1.4; }
+
+  .mcard-source { font-size:clamp(9px,0.72vw,11px);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:0.3vh; }
+
+  /* CoI Box */
+  .coi-box {
+    width:28vw;flex-shrink:0;
+    border-radius:16px;
+    background:linear-gradient(160deg,rgba(255,100,80,0.10) 0%,rgba(255,100,80,0.03) 100%);
+    border:1px solid rgba(255,100,80,0.25);
+    box-shadow:0 0 50px rgba(255,100,80,0.08);
+    padding:clamp(18px,2vh,28px) clamp(18px,1.8vw,26px);
+    display:flex;flex-direction:column;gap:1.5vh;
+    position:relative;overflow:hidden;
+  }
+  .coi-box::before { content:'';position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,100,80,0.4),transparent); }
+
+  .coi-label { font-size:clamp(10px,0.85vw,14px);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,100,80,0.8); }
+
+  .coi-big { font-size:clamp(36px,4.5vw,72px);font-weight:900;line-height:1;color:#ff6b6b; }
+  .coi-unit { font-size:clamp(13px,1.1vw,18px);font-weight:700;color:rgba(255,255,255,0.7);margin-top:0.3vh; }
+
+  .coi-divider { height:1px;background:rgba(255,100,80,0.2); }
+
+  .coi-items { display:flex;flex-direction:column;gap:0.7vh; }
+  .coi-item { display:flex;align-items:flex-start;gap:0.6vw;font-size:clamp(12px,0.95vw,16px);color:rgba(255,255,255,0.75);line-height:1.4; }
+  .coi-dot { width:5px;height:5px;border-radius:50%;background:#ff6b6b;flex-shrink:0;margin-top:5px; }
+
+  .coi-note { font-size:clamp(9px,0.75vw,12px);color:rgba(255,255,255,0.35);font-style:italic;line-height:1.4; }
+
+  /* Status Quo Strip */
+  .sq-strip {
+    flex-shrink:0;border-radius:12px;
+    background:rgba(91,143,241,0.07);border:1px solid rgba(91,143,241,0.2);
+    padding:clamp(10px,1.2vh,16px) clamp(18px,1.8vw,26px);
+    display:flex;align-items:center;gap:1.5vw;
+  }
+  .sq-icon { font-size:clamp(18px,1.8vw,26px);flex-shrink:0; }
+  .sq-text { flex:1;font-size:clamp(13px,1.05vw,17px);color:rgba(255,255,255,0.85);line-height:1.5; }
+  .sq-text em { font-style:normal;color:#5b8ff1;font-weight:700; }
+</style>
+</head>
+<body>
+<div class="slide-wrap">
+  <div class="bg"></div>
+  <div class="slide">
+
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">02 / 11</div>
+    </div>
+
+    <div class="slide-title">
+      <div class="eyebrow">Der Markt 2025 &mdash; 2026</div>
+      <div class="headline">Der Druck auf Bautr&auml;ger <span class="hl">w&auml;chst.</span></div>
+    </div>
+
+    <div class="body">
+
+      <div class="main">
+
+        <!-- MARKET CARDS -->
+        <div class="market-cards">
+
+          <div class="mcard">
+            <div class="mcard-num red">938</div>
+            <div class="mcard-divider"></div>
+            <div class="mcard-text">
+              <div class="mcard-title">Bautr&auml;ger-Insolvenzen 2025</div>
+              <div class="mcard-sub">„Die Talsohle ist noch nicht durchschritten." Wer jetzt kein System aufbaut, geh&ouml;rt zu den Verlierern der n&auml;chsten Welle.</div>
+              <div class="mcard-source">Falkensteg, Januar 2026</div>
+            </div>
+          </div>
+
+          <div class="mcard">
+            <div class="mcard-num">67</div>
+            <div class="mcard-divider"></div>
+            <div class="mcard-text">
+              <div class="mcard-title">Tage durchschnittliche Vermarktungsdauer</div>
+              <div class="mcard-sub">Q4 2025 bundesweit. Jede Woche ohne Abschluss ist eine Woche mit laufenden Kapitalkosten.</div>
+              <div class="mcard-source">CBRE Time-on-Market-Index Q4 2025</div>
+            </div>
+          </div>
+
+          <div class="mcard">
+            <div class="mcard-num">50&nbsp;%</div>
+            <div class="mcard-divider"></div>
+            <div class="mcard-text">
+              <div class="mcard-title">Vorverkaufsquote &mdash; Bankstandard</div>
+              <div class="mcard-sub">Ohne Vorverkauf kein Mittelabruf. Wer langsam vermarktet, riskiert Baustopp und Nachbesicherung.</div>
+              <div class="mcard-source">Branchenstandard Bautr&auml;gerfinanzierung 2025</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CoI BOX -->
+        <div class="coi-box">
+          <div class="coi-label">Cost of Inaction &mdash; pro Einheit</div>
+          <div>
+            <div class="coi-big">4.500&nbsp;&euro;</div>
+            <div class="coi-unit">pro Monat &mdash; pro unverkaufter Einheit</div>
+          </div>
+          <div class="coi-divider"></div>
+          <div class="coi-items">
+            <div class="coi-item"><div class="coi-dot"></div>Zinslast Senior Debt (4,5&ndash;6,5&nbsp;% p.a.)</div>
+            <div class="coi-item"><div class="coi-dot"></div>EK-Opportunit&auml;tskosten (~10&nbsp;% p.a.)</div>
+            <div class="coi-item"><div class="coi-dot"></div>Hausgeld &amp; Verwaltung ab Fertigstellung</div>
+            <div class="coi-item"><div class="coi-dot"></div>Mezzanine-Aufschlag (sofern vorhanden)</div>
+          </div>
+          <div class="coi-note">Modellrechnung: 380.000&nbsp;&euro; Einheit, 75&nbsp;% LTC, 5,5&nbsp;% Senior Debt. Konservative Sch&auml;tzung.</div>
+        </div>
+
+      </div>
+
+      <!-- STATUS QUO STRIP -->
+      <div class="sq-strip">
+        <div class="sq-icon">&#9888;</div>
+        <div class="sq-text">
+          Der Status quo ist <em>keine neutrale Option</em> &mdash; er ist eine implizite Entscheidung gegen strukturierten Vertrieb. Jeder Monat ohne System kostet mehr als ein Monat mit System.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
