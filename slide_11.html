@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 11 – Nächster Schritt</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;background:#2c313c;overflow:hidden;z-index:0; }
+  .bg { position:absolute;inset:0;background:radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.14) 0%,transparent 55%),radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.10) 0%,transparent 60%),radial-gradient(ellipse 50vw 50vh at 50% 50%,rgba(91,143,241,0.04) 0%,transparent 70%);pointer-events:none; }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em; }
+  .brand span { color:#5b8ff1; }
+  .slide-num { font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700; }
+  .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
+  .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
+  .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
+  .slide-title { flex-shrink:0;padding:6vh 4.5vw 1.5vh; }
+  .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1.8vh; }
+  .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
+  .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
+  .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .body { flex:1;display:flex;gap:2.5vw;padding:0 4.5vw 2vh;min-height:0;align-items:center; }
+
+  /* LEFT */
+  .left { flex:1;display:flex;flex-direction:column;gap:1.6vh; }
+
+  /* Summary */
+  .summary-box {
+    border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);
+    padding:clamp(14px,1.5vh,20px) clamp(16px,1.6vw,22px);
+    display:flex;flex-direction:column;gap:1vh;
+  }
+  .summary-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4); }
+  .summary-row { display:flex;align-items:flex-start;gap:0.8vw;font-size:clamp(13px,1.05vw,17px);color:rgba(255,255,255,0.82);line-height:1.4; }
+  .summary-check { color:#5b8ff1;font-size:clamp(13px,1.1vw,17px);flex-shrink:0;margin-top:1px; }
+
+  /* Alternative Close */
+  .alt-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4); }
+  .alt-cards { display:flex;gap:1.2vw; }
+
+  .alt-card {
+    flex:1;border-radius:14px;
+    background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);
+    padding:clamp(14px,1.5vh,22px) clamp(14px,1.4vw,20px);
+    display:flex;flex-direction:column;gap:0.8vh;
+    cursor:default;transition:border-color 0.2s,background 0.2s;
+  }
+  .alt-card.recommended {
+    background:rgba(91,143,241,0.08);border-color:rgba(91,143,241,0.32);
+    box-shadow:0 0 30px rgba(91,143,241,0.1);
+    position:relative;
+  }
+  .rec-badge {
+    position:absolute;top:-1px;right:clamp(12px,1.2vw,18px);
+    padding:2px 8px;border-radius:0 0 8px 8px;
+    background:#5b8ff1;font-size:clamp(9px,0.72vw,11px);font-weight:700;
+    letter-spacing:0.1em;text-transform:uppercase;color:#ffffff;
+  }
+  .alt-duration { font-size:clamp(20px,2.4vw,38px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .alt-card:not(.recommended) .alt-duration { background:none;-webkit-background-clip:unset;background-clip:unset;color:rgba(255,255,255,0.6); }
+  .alt-price { font-size:clamp(14px,1.3vw,20px);font-weight:700;color:#ffffff; }
+  .alt-card:not(.recommended) .alt-price { color:rgba(255,255,255,0.55); }
+  .alt-sub { font-size:clamp(11px,0.88vw,14px);color:rgba(255,255,255,0.5);line-height:1.4; }
+  .alt-card.recommended .alt-sub { color:rgba(255,255,255,0.7); }
+
+  /* Permission */
+  .permission-box {
+    border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+    padding:clamp(10px,1.1vh,15px) clamp(14px,1.4vw,20px);
+  }
+  .permission-text { font-size:clamp(12px,0.95vw,16px);color:rgba(255,255,255,0.6);line-height:1.55;font-style:italic; }
+  .permission-text em { font-style:normal;color:rgba(255,255,255,0.85); }
+
+  /* RIGHT */
+  .right { width:28vw;flex-shrink:0;display:flex;flex-direction:column;gap:1.4vh; }
+
+  .contacts-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4); }
+
+  .contact-card {
+    border-radius:14px;
+    background:rgba(91,143,241,0.07);border:1px solid rgba(91,143,241,0.22);
+    padding:clamp(14px,1.5vh,20px) clamp(14px,1.4vw,20px);
+    display:flex;flex-direction:column;gap:0.6vh;
+    text-decoration:none;
+    transition:background 0.2s,border-color 0.2s;
+  }
+  .contact-card:hover { background:rgba(91,143,241,0.14);border-color:rgba(91,143,241,0.4); }
+  .contact-role { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5b8ff1; }
+  .contact-name { font-size:clamp(16px,1.6vw,26px);font-weight:900;color:#ffffff;line-height:1.1; }
+  .contact-detail { font-size:clamp(11px,0.88vw,14px);color:rgba(255,255,255,0.6); }
+  .contact-cta { display:flex;align-items:center;gap:0.5vw;font-size:clamp(11px,0.9vw,15px);font-weight:700;color:#5b8ff1;margin-top:0.3vh; }
+
+  .next-step-box {
+    border-radius:12px;
+    background:linear-gradient(145deg,rgba(91,143,241,0.12),rgba(91,143,241,0.04));
+    border:1px solid rgba(91,143,241,0.25);
+    padding:clamp(12px,1.3vh,18px) clamp(14px,1.4vw,20px);
+    display:flex;align-items:flex-start;gap:0.8vw;
+  }
+  .ns-icon { font-size:clamp(18px,1.8vw,26px);flex-shrink:0; }
+  .ns-text { flex:1;font-size:clamp(12px,0.95vw,16px);color:rgba(255,255,255,0.82);line-height:1.5; }
+  .ns-text em { font-style:normal;color:#5b8ff1;font-weight:700; }
+</style>
+</head>
+<body>
+<div class="slide-wrap">
+  <div class="bg"></div>
+  <div class="slide">
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">11 / 11</div>
+    </div>
+    <div class="slide-title">
+      <div class="eyebrow">Der n&auml;chste Schritt</div>
+      <div class="headline">Wie m&ouml;chten Sie <span class="hl">starten?</span></div>
+    </div>
+    <div class="body">
+
+      <!-- LEFT -->
+      <div class="left">
+
+        <div class="summary-box">
+          <div class="summary-label">Kurz zusammengefasst</div>
+          <div class="summary-row"><div class="summary-check">&#10003;</div>Kampagne + CRM + Vertriebsberatung &mdash; alles aus einer Hand</div>
+          <div class="summary-row"><div class="summary-check">&#10003;</div>Nachgewiesene Ergebnisse: Bank 1 Saar, Berliner Sparkasse, bosch &amp; co.</div>
+          <div class="summary-row"><div class="summary-check">&#10003;</div>Monatlich k&uuml;ndbar, alle Daten geh&ouml;ren Ihnen, kein Lock-in</div>
+        </div>
+
+        <div class="alt-label">Wie m&ouml;chten Sie starten?</div>
+        <div class="alt-cards">
+          <div class="alt-card">
+            <div class="alt-duration">3 Monate</div>
+            <div class="alt-price">2.200&nbsp;&euro;&nbsp;/&nbsp;Monat</div>
+            <div class="alt-sub">Mindestlaufzeit &mdash; danach monatlich k&uuml;ndbar</div>
+          </div>
+          <div class="alt-card recommended">
+            <div class="rec-badge">Empfohlen</div>
+            <div class="alt-duration">4&ndash;6 Monate</div>
+            <div class="alt-price">2.000&nbsp;&euro;&nbsp;/&nbsp;Monat</div>
+            <div class="alt-sub">Mehr Zeit f&uuml;r Optimierung &mdash; bessere Ergebnisse, g&uuml;nstigerer Einstieg</div>
+          </div>
+        </div>
+
+        <div class="permission-box">
+          <div class="permission-text">Es ist absolut in Ordnung, heute <em>Nein</em> zu sagen &mdash; schlimmer w&auml;re ein h&ouml;fliches Vielleicht. Wenn Sie mehr Bedenkzeit brauchen: wir legen heute einen konkreten Folgetermin fest.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+        <div class="contacts-label">Ihre Ansprechpartner</div>
+
+        <a class="contact-card" href="https://meeting.viewr.studio/#/MeetingMitDaniel" target="_blank">
+          <div class="contact-role">Kampagne &amp; Strategie</div>
+          <div class="contact-name">Daniel Mussack</div>
+          <div class="contact-detail">daniel@neubau.marketing</div>
+          <div class="contact-cta">Termin vereinbaren &#8594;</div>
+        </a>
+
+        <a class="contact-card" href="https://meeting.viewr.studio/#/MeetingMitOlli" target="_blank">
+          <div class="contact-role">Vertrieb &amp; Wachstum</div>
+          <div class="contact-name">Oliver Hackenberg</div>
+          <div class="contact-detail">olli@neubau.marketing</div>
+          <div class="contact-cta">Termin vereinbaren &#8594;</div>
+        </a>
+
+        <div class="next-step-box">
+          <div class="ns-icon">&#128197;</div>
+          <div class="ns-text">Heute verlassen wir dieses Gespr&auml;ch mit einem <em>konkreten n&auml;chsten Schritt</em> &mdash; egal wie die Entscheidung ausf&auml;llt.</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
