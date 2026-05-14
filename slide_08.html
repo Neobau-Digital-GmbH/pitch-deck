@@ -24,7 +24,8 @@
   .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
   .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
   .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
-  .body { flex:1;display:flex;gap:2.5vw;padding:0 4.5vw 2vh;min-height:0;align-items:center; }
+  .body { flex:1;display:flex;flex-direction:column;justify-content:center;padding:2vh 4.5vw 2vh;min-height:0;border-top:1px solid rgba(255,255,255,0.12);margin-top:0.5vh; }
+  .body-row { display:flex;gap:2.5vw;align-items:stretch; }
 
   .left { flex:1;display:flex;flex-direction:column;gap:1.5vh; }
   .case-tag { display:inline-flex;align-items:center;gap:0.6vw;padding:0.5vh 1vw;border-radius:20px;background:rgba(91,143,241,0.1);border:1px solid rgba(91,143,241,0.25);font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5b8ff1;width:fit-content; }
@@ -85,14 +86,18 @@
       <div class="headline">bosch &amp; co. &mdash; <span class="hl">M50 Gunzenhausen.</span></div>
     </div>
     <div class="body">
+      <div class="body-row">
       <div class="left">
+        <div style="margin-bottom:1.4vh;">
+          <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Kundenlogos/Kunde%20-%20Bosch.png" alt="bosch &amp; co." style="height:clamp(60px,7.5vh,110px);width:auto;display:block;">
+        </div>
         <div class="case-tag">Kapitalanlage &middot; 10 Wochen aktiv &middot; abgeschlossen</div>
-        <div class="case-sub">101 Anfragen &middot; 2 Beurkundungen &middot; niedrigster CPL aus allen Cases</div>
+        <div class="case-sub">101 Anfragen &middot; 2 Beurkundungen &middot; g&uuml;nstigster Invest pro Anfrage aus allen Cases</div>
         <div class="bento-grid">
           <div class="bento hero">
-            <div class="bento-lbl">Cost per Lead</div>
+            <div class="bento-lbl">Invest pro Anfrage</div>
             <div class="bento-val">18,21&nbsp;&euro;</div>
-            <div class="bento-sub">vs. Portal ~600&nbsp;&euro; = ~33&times; g&uuml;nstiger</div>
+            <div class="bento-sub">vs. Portal ~600&nbsp;&euro; Invest pro Anfrage</div>
           </div>
           <div class="bento blue">
             <div class="bento-lbl">Anfragen gesamt</div>
@@ -100,7 +105,7 @@
             <div class="bento-sub">in 10 Wochen &middot; 1.839&nbsp;&euro; Budget</div>
           </div>
           <div class="bento blue">
-            <div class="bento-lbl">LP Conversion</div>
+            <div class="bento-lbl">Eintragungsrate Projektseite</div>
             <div class="bento-val">6,8&nbsp;%</div>
             <div class="bento-sub">101 / 1.487 Besucher</div>
           </div>
@@ -117,9 +122,9 @@
       </div>
       <div class="right">
         <div class="hero-stat">
-          <div class="hero-lbl">G&uuml;nstigster CPL aller Cases</div>
-          <div class="hero-val">18,21&nbsp;&euro;</div>
-          <div class="hero-unit">~33&times; g&uuml;nstiger als Immobilienportal</div>
+          <div class="hero-lbl">Preis pro Beurkundung</div>
+          <div class="hero-val">~920&nbsp;&euro;</div>
+          <div class="hero-unit">1.839&nbsp;&euro; Budget &divide; 2 Beurkundungen</div>
         </div>
         <div class="stats-strip">
           <div class="stat-item">
@@ -143,8 +148,9 @@
           <div class="crm-row"><div class="crm-check">&#10003;</div>Pipelines, Automatisierung, Dashboards</div>
           <div class="crm-row"><div class="crm-check">&#10003;</div>Strukturierter Vertriebsprozess ab Tag 1</div>
         </div>
-      </div>
-    </div>
+      </div><!-- end right -->
+      </div><!-- end body-row -->
+    </div><!-- end body -->
     <div class="footer">
       <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
       <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
