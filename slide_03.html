@@ -19,13 +19,11 @@
   .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
   .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
   .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
-
   .slide-title { flex-shrink:0;padding:6vh 4.5vw 1.5vh; }
   .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1.8vh; }
   .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
   .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
   .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
-
   .body { flex:1;display:flex;flex-direction:column;padding:0 4.5vw 2vh;gap:2vh;min-height:0;justify-content:center; }
 
   /* ── FLOW ── */
@@ -38,41 +36,28 @@
     position:relative;overflow:hidden;
     text-align:center;align-items:center;
   }
-  .flow-step.camp { background:rgba(91,143,241,0.08);border:1px solid rgba(91,143,241,0.25); }
-  .flow-step.crm  { background:rgba(91,143,241,0.12);border:1px solid rgba(91,143,241,0.35);box-shadow:0 0 40px rgba(91,143,241,0.1); }
-  .flow-step.vert { background:rgba(52,199,89,0.07);border:1px solid rgba(52,199,89,0.22); }
-  .flow-step.result { background:linear-gradient(145deg,rgba(91,143,241,0.15),rgba(91,143,241,0.05));border:1px solid rgba(91,143,241,0.4);box-shadow:0 0 50px rgba(91,143,241,0.12); }
+  .flow-step.s1 { background:rgba(91,143,241,0.07);border:1px solid rgba(91,143,241,0.2); }
+  .flow-step.s2 { background:rgba(91,143,241,0.10);border:1px solid rgba(91,143,241,0.28); }
+  .flow-step.s3 { background:rgba(91,143,241,0.13);border:1px solid rgba(91,143,241,0.34);box-shadow:0 0 30px rgba(91,143,241,0.08); }
+  .flow-step.result { background:linear-gradient(145deg,rgba(52,199,89,0.10),rgba(52,199,89,0.03));border:1px solid rgba(52,199,89,0.28);box-shadow:0 0 40px rgba(52,199,89,0.08); }
 
   .flow-step::after { content:'';position:absolute;top:0;left:5%;right:5%;height:1px; }
-  .flow-step.camp::after  { background:linear-gradient(90deg,transparent,rgba(91,143,241,0.4),transparent); }
-  .flow-step.crm::after   { background:linear-gradient(90deg,transparent,rgba(91,143,241,0.6),transparent); }
-  .flow-step.vert::after  { background:linear-gradient(90deg,transparent,rgba(52,199,89,0.4),transparent); }
-  .flow-step.result::after { background:linear-gradient(90deg,transparent,rgba(91,143,241,0.7),transparent); }
+  .flow-step.s1::after,.flow-step.s2::after,.flow-step.s3::after { background:linear-gradient(90deg,transparent,rgba(91,143,241,0.35),transparent); }
+  .flow-step.result::after { background:linear-gradient(90deg,transparent,rgba(52,199,89,0.5),transparent); }
 
-  .flow-icon { font-size:clamp(24px,2.8vw,42px); }
-  .flow-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase; }
-  .flow-step.camp .flow-label  { color:#5b8ff1; }
-  .flow-step.crm .flow-label   { color:#5b8ff1; }
-  .flow-step.vert .flow-label  { color:#34c759; }
-  .flow-step.result .flow-label { color:#5b8ff1; }
+  .flow-icon { font-size:clamp(24px,2.8vw,40px); }
+  .flow-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5b8ff1; }
+  .flow-step.result .flow-label { color:#34c759; }
+  .flow-title { font-size:clamp(15px,1.4vw,22px);font-weight:900;color:#ffffff;line-height:1.2; }
+  .flow-desc { font-size:clamp(11px,0.9vw,15px);color:rgba(255,255,255,0.65);line-height:1.45; }
+  .flow-desc strong { color:#ffffff;font-weight:700; }
 
-  .flow-title { font-size:clamp(16px,1.5vw,24px);font-weight:900;color:#ffffff;line-height:1.2; }
-  .flow-desc { font-size:clamp(11px,0.9vw,15px);color:rgba(255,255,255,0.62);line-height:1.45; }
-
-  /* Arrow */
-  .flow-arrow { font-size:clamp(18px,2vw,30px);color:rgba(91,143,241,0.5);flex-shrink:0;padding:0 0.8vw;font-weight:900; }
+  .flow-arrow { font-size:clamp(18px,2vw,28px);color:rgba(91,143,241,0.4);flex-shrink:0;padding:0 0.6vw;font-weight:900; }
 
   /* ── DIFFERENTIATORS ── */
   .diffs { display:flex;gap:1.4vw;flex-shrink:0; }
-
-  .diff-card {
-    flex:1;border-radius:12px;
-    background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
-    padding:clamp(12px,1.3vh,18px) clamp(14px,1.4vw,20px);
-    display:flex;align-items:flex-start;gap:0.8vw;
-  }
+  .diff-card { flex:1;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:clamp(12px,1.3vh,18px) clamp(14px,1.4vw,20px);display:flex;align-items:flex-start;gap:0.8vw; }
   .diff-icon { font-size:clamp(16px,1.5vw,22px);flex-shrink:0;margin-top:1px; }
-  .diff-text { flex:1; }
   .diff-title { font-size:clamp(13px,1.05vw,17px);font-weight:700;color:#ffffff;line-height:1.2;margin-bottom:0.3vh; }
   .diff-sub { font-size:clamp(11px,0.88vw,14px);color:rgba(255,255,255,0.58);line-height:1.4; }
 </style>
@@ -81,45 +66,42 @@
 <div class="slide-wrap">
   <div class="bg"></div>
   <div class="slide">
-
     <div class="header">
       <div class="brand">neubau<span>.</span>marketing</div>
       <div class="slide-num">03 / 11</div>
     </div>
-
     <div class="slide-title">
-      <div class="eyebrow">Das System</div>
+      <div class="eyebrow">Der Prozess</div>
       <div class="headline">Mehr Anfragen l&ouml;sen das Problem nicht. <span class="hl">Das hier schon.</span></div>
     </div>
-
     <div class="body">
 
       <!-- FLOW -->
       <div class="flow">
 
-        <div class="flow-step camp">
-          <div class="flow-icon">&#128202;</div>
-          <div class="flow-label">Schritt 1</div>
-          <div class="flow-title">Kampagne</div>
-          <div class="flow-desc">Meta Ads, Landingpage, Creatives &mdash; qualifizierte Anfragen zum niedrigsten CPL.</div>
-        </div>
-
-        <div class="flow-arrow">&#8594;</div>
-
-        <div class="flow-step crm">
-          <div class="flow-icon">&#128203;</div>
-          <div class="flow-label">Schritt 2</div>
-          <div class="flow-title">Neobau Solutions CRM</div>
-          <div class="flow-desc">Jede Anfrage sofort im CRM. Kein Interessent verschwindet im Tagesgesch&auml;ft.</div>
-        </div>
-
-        <div class="flow-arrow">&#8594;</div>
-
-        <div class="flow-step vert">
+        <div class="flow-step s1">
           <div class="flow-icon">&#127919;</div>
+          <div class="flow-label">Schritt 1</div>
+          <div class="flow-title">Zielkunden-Avatar</div>
+          <div class="flow-desc">Aus Ihren bisherigen K&auml;ufern, unseren Referenzprojekten und dem Profil Ihrer Einheiten &mdash; wir wissen genau, <strong>wer kauft.</strong></div>
+        </div>
+
+        <div class="flow-arrow">&#8594;</div>
+
+        <div class="flow-step s2">
+          <div class="flow-icon">&#128270;</div>
+          <div class="flow-label">Schritt 2</div>
+          <div class="flow-title">Der richtige Kanal</div>
+          <div class="flow-desc">Nicht jedes Projekt funktioniert auf demselben Weg. <strong>Wir w&auml;hlen f&uuml;r Ihr Projekt den Kanal</strong>, der Ihren Zielkunden tats&auml;chlich erreicht.</div>
+        </div>
+
+        <div class="flow-arrow">&#8594;</div>
+
+        <div class="flow-step s3">
+          <div class="flow-icon">&#128172;</div>
           <div class="flow-label">Schritt 3</div>
-          <div class="flow-title">Vertriebsberatung</div>
-          <div class="flow-desc">Reaktionszeit, Nachfass, Gespr&auml;chsf&uuml;hrung &mdash; die 80&nbsp;% die &uuml;ber Beurkundungen entscheiden.</div>
+          <div class="flow-title">Spitze Ansprache</div>
+          <div class="flow-desc">Ihr Zielkunde wird mit einem Angebot angesprochen, das <strong>perfekt zu ihm passt</strong> &mdash; und landet auf Ihrer Projektseite.</div>
         </div>
 
         <div class="flow-arrow">&#8594;</div>
@@ -127,8 +109,8 @@
         <div class="flow-step result">
           <div class="flow-icon">&#9989;</div>
           <div class="flow-label">Ergebnis</div>
-          <div class="flow-title">Planbare Beurkundungen</div>
-          <div class="flow-desc">Kein Zufall. Kein Gl&uuml;ck. Ein System das Beurkundungen produziert &mdash; reproduzierbar.</div>
+          <div class="flow-title">Kaufinteressenten in Ihrer Pipeline</div>
+          <div class="flow-desc">Interessenten tragen sich <strong>proaktiv</strong> ein &mdash; vorqualifiziert, motiviert, bereit f&uuml;r Ihren Vertrieb.</div>
         </div>
 
       </div>
@@ -138,15 +120,15 @@
 
         <div class="diff-card">
           <div class="diff-icon">&#9940;</div>
-          <div class="diff-text">
-            <div class="diff-title">Kein Dienstleister</div>
-            <div class="diff-sub">Wir sind Ihr Vertriebspartner. Ihr Erfolg ist unser Interesse &mdash; nicht das Abarbeiten von Auftr&auml;gen.</div>
+          <div>
+            <div class="diff-title">Kein Schema F</div>
+            <div class="diff-sub">Jedes Projekt bekommt seinen eigenen Ansatz &mdash; entwickelt mit Ihrem Ansprechpartner.</div>
           </div>
         </div>
 
         <div class="diff-card">
           <div class="diff-icon">&#128222;</div>
-          <div class="diff-text">
+          <div>
             <div class="diff-title">W&ouml;chentlicher Kontakt</div>
             <div class="diff-sub">Fester Rhythmus: wöchentliches Meeting, monatliches Strategiegespr&auml;ch.</div>
           </div>
@@ -154,29 +136,27 @@
 
         <div class="diff-card">
           <div class="diff-icon">&#128200;</div>
-          <div class="diff-text">
+          <div>
             <div class="diff-title">Vollst&auml;ndige Transparenz</div>
-            <div class="diff-sub">Alle Konten, alle Daten, alle KPIs &mdash; jederzeit einsehbar. Keine Black Box.</div>
+            <div class="diff-sub">Alle Kennzahlen jederzeit einsehbar &mdash; keine Black Box, keine Ausreden.</div>
           </div>
         </div>
 
         <div class="diff-card">
-          <div class="diff-icon">&#128197;</div>
-          <div class="diff-text">
-            <div class="diff-title">Monatlich k&uuml;ndbar</div>
-            <div class="diff-sub">Nach Mindestlaufzeit monatliche Kündigung &mdash; kein Knebelvertrag.</div>
+          <div class="diff-icon">&#127919;</div>
+          <div>
+            <div class="diff-title">Ihr Vertrieb f&uuml;hrt den Abschluss</div>
+            <div class="diff-sub">Wir liefern die qualifizierten Kaufinteressenten &mdash; Ihr Team f&uuml;hrt sie zum Notartermin.</div>
           </div>
         </div>
 
       </div>
 
     </div>
-
     <div class="footer">
       <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
       <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
     </div>
-
   </div>
 </div>
 </body>
