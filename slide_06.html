@@ -26,10 +26,12 @@
   .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
   .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
 
-  .body { flex:1;display:flex;gap:2.5vw;padding:0 4.5vw 2vh;min-height:0;align-items:center; }
+  .body { flex:1;display:flex;flex-direction:column;justify-content:center;padding:2vh 4.5vw 2vh;min-height:0;border-top:1px solid rgba(255,255,255,0.12);margin-top:0.5vh; }
+  .body-row { display:flex;gap:2.5vw;align-items:stretch; }
 
   /* LEFT */
   .left { flex:1;display:flex;flex-direction:column;gap:1.5vh; }
+
 
   .case-tag { display:inline-flex;align-items:center;gap:0.6vw;padding:0.5vh 1vw;border-radius:20px;background:rgba(91,143,241,0.1);border:1px solid rgba(91,143,241,0.25);font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5b8ff1;width:fit-content; }
 
@@ -96,9 +98,13 @@
     </div>
 
     <div class="body">
+      <div class="body-row">
 
       <!-- LEFT -->
       <div class="left">
+        <div style="margin-bottom:1.4vh;">
+          <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Kundenlogos/Kunde%20-%20Bank1Saar.png" alt="Bank 1 Saar" style="height:clamp(60px,7.5vh,110px);width:auto;display:block;">
+        </div>
         <div class="case-tag">VR-Bank &middot; Saarland &middot; abgeschlossen</div>
         <div class="case-sub">Vorverkaufsquote 30&nbsp;% erreicht &mdash; Bankfinanzierung gesichert.</div>
 
@@ -114,12 +120,12 @@
             <div class="bento-sub">bei 10.471&nbsp;&euro; Mediabudget</div>
           </div>
           <div class="bento blue">
-            <div class="bento-lbl">Cost per Lead</div>
+            <div class="bento-lbl">Invest pro Anfrage</div>
             <div class="bento-val">17,30&nbsp;&euro;</div>
-            <div class="bento-sub">vs. Portal ~600&nbsp;&euro;</div>
+            <div class="bento-sub">vs. Portal ~600&nbsp;&euro; Invest pro Anfrage</div>
           </div>
           <div class="bento blue">
-            <div class="bento-lbl">LP Conversion</div>
+            <div class="bento-lbl">Eintragungsrate Projektseite</div>
             <div class="bento-val">8,7&nbsp;%</div>
             <div class="bento-sub">301 / 3.474 Besucher</div>
           </div>
@@ -153,7 +159,7 @@
           <div class="roi-divider"></div>
           <div class="roi-item">
             <div class="roi-val">~35&times;</div>
-            <div class="roi-lbl">g&uuml;nstiger CPL</div>
+            <div class="roi-lbl">g&uuml;nstiger Invest/Anfrage</div>
           </div>
         </div>
 
@@ -161,9 +167,9 @@
           <div class="vk-icon">&#127981;</div>
           <div class="vk-text"><strong>Vorverkaufsquote erreicht.</strong> Bankfinanzierung gesichert &mdash; Bauprojekt konnte planm&auml;&szlig;ig starten.</div>
         </div>
-      </div>
-
-    </div>
+      </div><!-- end right -->
+      </div><!-- end body-row -->
+    </div><!-- end body -->
 
     <div class="footer">
       <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
