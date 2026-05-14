@@ -24,7 +24,7 @@
   .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
   .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
   .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
-  .body { flex:1;display:flex;gap:2.5vw;padding:0 4.5vw 2vh;min-height:0;align-items:center; }
+  .body { flex:1;display:flex;flex-direction:column;padding:2vh 4.5vw 2vh;gap:1.8vh;min-height:0;justify-content:center; }
 
   /* LEFT */
   .left { flex:1;display:flex;flex-direction:column;gap:1.6vh; }
@@ -121,60 +121,44 @@
     </div>
     <div class="body">
 
-      <!-- LEFT -->
-      <div class="left">
-
-        <div class="summary-box">
+      <!-- OBERE REIHE: Summary + Kontakt -->
+      <div style="display:flex;gap:2.5vw;align-items:stretch;flex-shrink:0;">
+        <div class="summary-box" style="flex:1;">
           <div class="summary-label">Kurz zusammengefasst</div>
-          <div class="summary-row"><div class="summary-check">&#10003;</div>Kampagne + CRM + Vertriebsberatung &mdash; ein System, eine Verantwortung</div>
+          <div class="summary-row"><div class="summary-check">&#10003;</div>Zielkunden-Ansprache + Vertriebssystem + Abverkaufsoptimierung &mdash; ein System, eine Verantwortung</div>
           <div class="summary-row"><div class="summary-check">&#10003;</div>Bank 1 Saar, Berliner Sparkasse, bosch &amp; co. &mdash; belegte Ergebnisse, echte Namen</div>
-          <div class="summary-row"><div class="summary-check">&#10003;</div>Klare Konditionen: 3&ndash;6 Monate Mindestlaufzeit, danach monatlich k&uuml;ndbar &mdash; alle Daten geh&ouml;ren Ihnen</div>
+          <div class="summary-row"><div class="summary-check">&#10003;</div>Klare, faire Konditionen &mdash; alle Daten geh&ouml;ren Ihnen, volle Transparenz von Tag 1</div>
         </div>
+        <a class="contact-card" href="https://meeting.viewr.studio/#/MeetingMitOlli" target="_blank" style="width:28vw;flex-shrink:0;">
+          <div class="contacts-label" style="margin-bottom:0.5vh;">Ihr Ansprechpartner</div>
+          <div class="contact-role">Vertrieb &amp; Wachstum</div>
+          <div class="contact-name">Oliver Hackenberg</div>
+          <div class="contact-detail">olli@neubau.marketing &middot; +49 151 290 42 396</div>
+          <div class="contact-cta">Jetzt Termin vereinbaren &#8594;</div>
+        </a>
+      </div>
 
-        <div class="alt-label">Eine Entscheidung. Zwei Optionen.</div>
+      <!-- UNTERE REIHE: Alt-Close -->
+      <div style="flex-shrink:0;">
+        <div class="alt-label" style="margin-bottom:1vh;">Eine Entscheidung. Zwei Optionen.</div>
         <div class="alt-cards">
           <div class="alt-card">
             <div class="alt-duration">3 Monate</div>
             <div class="alt-price">2.200&nbsp;&euro;&nbsp;/&nbsp;Monat</div>
-            <div class="alt-sub">Mindestlaufzeit &mdash; danach monatlich k&uuml;ndbar</div>
+            <div class="alt-sub">Erster Schritt &mdash; voller Fokus auf Ihr Projekt</div>
           </div>
           <div class="alt-card recommended">
             <div class="rec-badge">Empfohlen</div>
-            <div class="alt-duration">4&ndash;6 Monate</div>
+            <div class="alt-duration">6 Monate</div>
             <div class="alt-price">2.000&nbsp;&euro;&nbsp;/&nbsp;Monat</div>
-            <div class="alt-sub">Mehr Zeit f&uuml;r Optimierung &mdash; bessere Ergebnisse, g&uuml;nstigerer Einstieg</div>
+            <div class="alt-sub">Gen&uuml;gend Zeit f&uuml;r Optimierung &mdash; messbare Ergebnisse, bew&auml;hrter Einstieg</div>
           </div>
         </div>
-
-        <div class="permission-box">
-          <div class="permission-text">Jeder Monat ohne Entscheidung kostet mehr als der Retainer. <em>Wir legen heute einen konkreten n&auml;chsten Schritt fest</em> &mdash; egal ob Start, Folgetermin oder offene Fragen.
-          </div>
-        </div>
-
       </div>
 
-      <!-- RIGHT -->
-      <div class="right">
-        <div class="contacts-label">Ihre Ansprechpartner</div>
-
-        <a class="contact-card" href="https://meeting.viewr.studio/#/MeetingMitOlli" target="_blank">
-          <div class="contact-role">Vertrieb &amp; Wachstum</div>
-          <div class="contact-name">Oliver Hackenberg</div>
-          <div class="contact-detail">olli@neubau.marketing</div>
-          <div class="contact-cta">Termin vereinbaren &#8594;</div>
-        </a>
-
-        <a class="contact-card" href="https://meeting.viewr.studio/#/MeetingMitDaniel" target="_blank">
-          <div class="contact-role">Kampagne &amp; Strategie</div>
-          <div class="contact-name">Daniel Mussack</div>
-          <div class="contact-detail">daniel@neubau.marketing</div>
-          <div class="contact-cta">Termin vereinbaren &#8594;</div>
-        </a>
-
-        <div class="next-step-box">
-          <div class="ns-icon">&#128197;</div>
-          <div class="ns-text">Heute verlassen wir dieses Gespr&auml;ch mit einem <em>konkreten n&auml;chsten Schritt</em> &mdash; egal wie die Entscheidung ausf&auml;llt.</div>
-        </div>
+      <!-- URGENCY -->
+      <div class="permission-box" style="flex-shrink:0;">
+        <div class="permission-text" style="font-size:clamp(14px,1.15vw,19px);">Jeder Monat ohne Entscheidung kostet Sie mehr als der gesamte Jahres-Invest. <em>Das sind keine Worte &mdash; das sind Ihre eigenen Zahlen.</em></div>
       </div>
 
     </div>
