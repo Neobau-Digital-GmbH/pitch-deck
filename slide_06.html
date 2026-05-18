@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Slide 06 – Case Bank 1 Saar</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
   *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
   html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
@@ -20,66 +21,82 @@
   .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
   .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
 
-  .slide-title { flex-shrink:0;padding:6vh 4.5vw 1.5vh; }
+  /* ── TITLE ── */
+  .slide-title { flex-shrink:0;padding:4vh 4.5vw 1.5vh;display:flex;align-items:flex-end;justify-content:space-between; }
   .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1.8vh; }
   .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
-  .headline { font-size:clamp(32px,4.2vw,66px);font-weight:900;line-height:1.05; }
+  .headline { font-size:clamp(26px,3vw,50px);font-weight:900;line-height:1.05;margin-bottom:1.2vh; }
   .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .case-tag { display:inline-flex;align-items:center;gap:0.6vw;padding:0.5vh 1vw;border-radius:20px;background:rgba(91,143,241,0.1);border:1px solid rgba(91,143,241,0.25);font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5b8ff1; }
+  .logo-wrap img { height:clamp(38px,4.5vh,64px);width:auto;display:block; }
 
-  .body { flex:1;display:flex;flex-direction:column;justify-content:center;padding:2vh 4.5vw 2vh;min-height:0;border-top:1px solid rgba(255,255,255,0.12);margin-top:0.5vh; }
-  .body-row { display:flex;gap:2.5vw;align-items:stretch; }
+  /* ── BODY ── */
+  .body { flex:1;display:flex;gap:2vw;padding:1.5vh 4.5vw 1.5vh;min-height:0;align-items:stretch; }
 
   /* LEFT */
-  .left { flex:1;display:flex;flex-direction:column;gap:1.5vh; }
+  .left { width:26vw;flex-shrink:0;display:flex;flex-direction:column;gap:1.2vh; }
 
+  .block { border-radius:12px;padding:clamp(10px,1.1vh,15px) clamp(12px,1.2vw,16px);display:flex;flex-direction:column;gap:0.55vh; }
+  .block.before { background:rgba(255,100,80,0.06);border:1px solid rgba(255,100,80,0.2); }
+  .block.action { background:rgba(91,143,241,0.07);border:1px solid rgba(91,143,241,0.2); }
 
-  .case-tag { display:inline-flex;align-items:center;gap:0.6vw;padding:0.5vh 1vw;border-radius:20px;background:rgba(91,143,241,0.1);border:1px solid rgba(91,143,241,0.25);font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5b8ff1;width:fit-content; }
+  .block-label { font-size:clamp(9px,0.72vw,11px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.2vh; }
+  .block.before .block-label { color:rgba(255,100,80,0.75); }
+  .block.action .block-label { color:#5b8ff1; }
 
-  .case-sub { font-size:clamp(13px,1.05vw,17px);font-weight:400;color:rgba(255,255,255,0.62);line-height:1.5; }
+  .block-row { display:flex;align-items:flex-start;gap:0.5vw;font-size:clamp(11px,0.9vw,15px);color:rgba(255,255,255,0.8);line-height:1.45; }
+  .dot { width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px; }
+  .block.before .dot { background:#ff6b6b; }
+  .block.action .dot { background:#5b8ff1; }
 
-  /* Bento */
-  .bento-grid { display:grid;grid-template-columns:1fr 1fr;gap:1vh; }
-  .bento { border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);padding:clamp(10px,1.1vh,15px) clamp(12px,1.2vw,17px);display:flex;flex-direction:column;gap:0.3vh;position:relative;overflow:hidden; }
-  .bento::after { content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.15),transparent); }
-  .bento.blue { background:rgba(91,143,241,0.07);border-color:rgba(91,143,241,0.22); }
-  .bento.hero { background:linear-gradient(145deg,rgba(91,143,241,0.13),rgba(91,143,241,0.04));border-color:rgba(91,143,241,0.35);box-shadow:0 0 30px rgba(91,143,241,0.12); }
-  .bento-lbl { font-size:clamp(9px,0.78vw,12px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45); }
-  .bento.blue .bento-lbl,.bento.hero .bento-lbl { color:#5b8ff1; }
-  .bento-val { font-size:clamp(20px,2.4vw,38px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
-  .bento-val.green { background:none;-webkit-background-clip:unset;background-clip:unset;color:#34c759; }
-  .bento-sub { font-size:clamp(10px,0.8vw,13px);font-weight:500;color:rgba(255,255,255,0.55);line-height:1.3; }
+  .arrow { text-align:center;font-size:clamp(16px,1.4vw,20px);color:rgba(91,143,241,0.35); }
 
-  /* Context */
-  .context-box { border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:clamp(10px,1.2vh,16px) clamp(12px,1.2vw,18px);display:flex;flex-direction:column;gap:0.6vh; }
-  .ctx-row { display:flex;align-items:flex-start;gap:0.8vw;font-size:clamp(12px,0.95vw,16px);color:rgba(255,255,255,0.78);line-height:1.4; }
-  .ctx-dot { width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px; }
+  /* Quote */
+  .quote-block { border-radius:12px;padding:clamp(10px,1.1vh,15px) clamp(12px,1.2vw,16px);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:0.8vh; }
+  .q-mark { font-size:clamp(28px,3.5vw,50px);color:rgba(91,143,241,0.18);font-family:Georgia,serif;line-height:0.9;flex-shrink:0; }
+  .q-text { font-size:clamp(11px,0.88vw,14px);color:rgba(255,255,255,0.72);line-height:1.6;font-style:italic; }
+  .q-person-row { display:flex;align-items:center;gap:0.8vw;margin-top:0.4vh; }
+  .q-avatar { width:clamp(32px,3.5vh,48px);height:clamp(32px,3.5vh,48px);border-radius:50%;overflow:hidden;border:2px solid rgba(91,143,241,0.35);flex-shrink:0; }
+  .q-avatar img { width:100%;height:100%;object-fit:cover;display:block; }
+  .q-person { font-size:clamp(11px,0.88vw,14px);font-weight:700;color:#5b8ff1; }
 
   /* RIGHT */
-  .right { width:30vw;flex-shrink:0;display:flex;flex-direction:column;gap:1.4vh; }
+  .right { flex:1;display:flex;flex-direction:column;gap:1.2vh; }
 
-  .hero-stat {
-    border-radius:16px;
-    background:linear-gradient(145deg,rgba(91,143,241,0.13),rgba(91,143,241,0.04));
-    border:1px solid rgba(91,143,241,0.35);
-    box-shadow:0 0 60px rgba(91,143,241,0.12);
-    padding:clamp(20px,2.2vh,32px) clamp(18px,1.8vw,26px);
-    text-align:center;position:relative;overflow:hidden;
-  }
-  .hero-stat::before { content:'';position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.6),transparent); }
-  .hero-lbl { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1vh; }
-  .hero-val { font-size:clamp(52px,7vw,110px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
-  .hero-unit { font-size:clamp(14px,1.4vw,22px);font-weight:700;color:rgba(255,255,255,0.7);margin-top:0.5vh; }
+  /* Chart */
+  .chart-card { flex:none;height:420px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);padding:clamp(8px,1vh,13px) clamp(14px,1.4vw,20px);display:flex;flex-direction:column;position:relative; }
+  .chart-title { font-size:clamp(9px,0.75vw,12px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.8vh;flex-shrink:0; }
+  .chart-inner { flex:1;position:relative;min-height:0; }
+  #myChart { position:absolute;inset:0;width:100%!important;height:100%!important; }
 
-  .roi-strip { border-radius:12px;background:linear-gradient(145deg,rgba(91,143,241,0.10),rgba(91,143,241,0.03));border:1px solid rgba(91,143,241,0.25);padding:clamp(12px,1.3vh,18px) clamp(14px,1.4vw,20px);display:flex;align-items:center;justify-content:space-between;gap:1vw; }
-  .roi-item { display:flex;flex-direction:column;align-items:center;gap:0.2vh; }
-  .roi-val { font-size:clamp(16px,1.8vw,28px);font-weight:900;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
-  .roi-lbl { font-size:clamp(9px,0.72vw,11px);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);text-align:center; }
-  .roi-divider { width:1px;align-self:stretch;background:rgba(91,143,241,0.2); }
+  /* Results */
+  .results { display:flex;gap:1vw;flex-shrink:0; }
+  .results-secondary { gap:0.8vw; }
+  .res { flex:1;border-radius:11px;padding:clamp(10px,1.1vh,14px) clamp(10px,1vw,14px);display:flex;flex-direction:column;gap:0.25vh; }
+  .res.blue { background:rgba(91,143,241,0.08);border:1px solid rgba(91,143,241,0.22); }
+  .res.green { background:rgba(52,199,89,0.08);border:1px solid rgba(52,199,89,0.22); }
+  .res-lbl { font-size:clamp(9px,0.72vw,11px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase; }
+  .res.blue .res-lbl { color:#5b8ff1; }
+  .res.green .res-lbl { color:#34c759; }
+  .res-val { font-size:clamp(20px,2.6vw,40px);font-weight:900;line-height:1; }
+  .res.blue .res-val { background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .res.green .res-val { color:#34c759; }
+  .res-badge { display:inline-flex;padding:1px 7px;border-radius:8px;font-size:clamp(9px,0.75vw,12px);font-weight:700;width:fit-content;margin-top:0.2vh; }
+  .res.blue .res-badge { background:rgba(91,143,241,0.15);color:#5b8ff1; }
+  .res.green .res-badge { background:rgba(52,199,89,0.15);color:#34c759; }
+  .res-sub { font-size:clamp(9px,0.75vw,12px);color:rgba(255,255,255,0.45);margin-top:0.1vh; }
 
-  .vk-box { border-radius:12px;background:rgba(52,199,89,0.07);border:1px solid rgba(52,199,89,0.2);padding:clamp(10px,1.2vh,16px) clamp(14px,1.4vw,20px);display:flex;align-items:center;gap:1vw; }
-  .vk-icon { font-size:clamp(18px,1.8vw,26px);flex-shrink:0; }
-  .vk-text { flex:1;font-size:clamp(12px,0.95vw,16px);color:rgba(255,255,255,0.82);line-height:1.5; }
-  .vk-text strong { color:#34c759;font-weight:700; }
+  /* Secondary row */
+  .res-s { flex:1;border-radius:9px;padding:clamp(7px,0.8vh,11px) clamp(8px,0.8vw,12px);display:flex;flex-direction:column;gap:0.2vh; }
+  .res-s.blue { background:rgba(91,143,241,0.05);border:1px solid rgba(91,143,241,0.15); }
+  .res-s.green2 { background:rgba(52,199,89,0.07);border:1px solid rgba(52,199,89,0.2); }
+  .res-s-lbl { font-size:clamp(8px,0.68vw,10px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase; }
+  .res-s.blue .res-s-lbl { color:rgba(91,143,241,0.7); }
+  .res-s.green2 .res-s-lbl { color:rgba(52,199,89,0.7); }
+  .res-s-val { font-size:clamp(14px,1.6vw,24px);font-weight:900;line-height:1; }
+  .res-s.blue .res-s-val { color:#5b8ff1; }
+  .res-s.green2 .res-s-val { color:#34c759; }
+  .res-s-sub { font-size:clamp(8px,0.68vw,10px);color:rgba(255,255,255,0.4); }
 </style>
 </head>
 <body>
@@ -93,90 +110,220 @@
     </div>
 
     <div class="slide-title">
-      <div class="eyebrow">Case 01 &middot; Bank &middot; Saarland</div>
-      <div class="headline">Bank 1 Saar &mdash; <span class="hl">7 Beurkundungen.</span></div>
+      <div>
+        <div class="eyebrow">Bank 1 Saar</div>
+        <div class="headline">Von 0 auf <span class="hl">7 Beurkundungen.</span></div>
+      </div>
+      <div class="logo-wrap">
+        <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Kundenlogos/Kunde%20-%20Bank1Saar.png" alt="Bank 1 Saar">
+      </div>
     </div>
 
     <div class="body">
-      <div class="body-row">
 
       <!-- LEFT -->
       <div class="left">
-        <div style="margin-bottom:1.4vh;">
-          <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Kundenlogos/Kunde%20-%20Bank1Saar.png" alt="Bank 1 Saar" style="height:clamp(60px,7.5vh,110px);width:auto;display:block;">
-        </div>
-        <div class="case-tag">VR-Bank &middot; Saarland &middot; abgeschlossen</div>
-        <div class="case-sub">Vorverkaufsquote 30&nbsp;% erreicht &mdash; Bankfinanzierung gesichert.</div>
 
-        <div class="bento-grid">
-          <div class="bento hero">
-            <div class="bento-lbl">Beurkundungen</div>
-            <div class="bento-val green">7</div>
-            <div class="bento-sub">notariell &middot; ~1,9 Mio&nbsp;&euro; Volumen</div>
-          </div>
-          <div class="bento blue">
-            <div class="bento-lbl">Anfragen gesamt</div>
-            <div class="bento-val">301</div>
-            <div class="bento-sub">bei 10.471&nbsp;&euro; Mediabudget</div>
-          </div>
-          <div class="bento blue">
-            <div class="bento-lbl">Invest pro Anfrage</div>
-            <div class="bento-val">17,30&nbsp;&euro;</div>
-            <div class="bento-sub">vs. Portal ~600&nbsp;&euro; Invest pro Anfrage</div>
-          </div>
-          <div class="bento blue">
-            <div class="bento-lbl">Eintragungsrate Projektseite</div>
-            <div class="bento-val">8,7&nbsp;%</div>
-            <div class="bento-sub">301 / 3.474 Besucher</div>
-          </div>
+        <div class="block before">
+          <div class="block-label">Vor der Zusammenarbeit</div>
+          <div class="block-row"><div class="dot"></div>&Oslash; 2&ndash;3 Anfragen/Monat &uuml;ber Portale &mdash; kaum qualifizierte Interessenten</div>
+          <div class="block-row"><div class="dot"></div>0 verkaufte Einheiten &mdash; Projekt drohte zu stagnieren</div>
+          <div class="block-row"><div class="dot"></div>Vorverkaufsquote f&uuml;r Bankfinanzierung nicht erreichbar</div>
+          <div class="block-row"><div class="dot"></div>Kein Nachfassprozess &mdash; Anfragen versandeten im Tagesgesch&auml;ft</div>
+          <div class="block-row"><div class="dot"></div>Hohe Portalkosten ohne messbaren R&uuml;cklauf</div>
         </div>
 
-        <div class="context-box">
-          <div class="ctx-row"><div class="ctx-dot" style="background:#ff6b6b;"></div>Vorher: kein digitaler Vertrieb, ausschlie&szlig;lich Empfehlungen</div>
-          <div class="ctx-row"><div class="ctx-dot" style="background:#5b8ff1;"></div>30&nbsp;% Vorverkaufsquote &mdash; Bank akzeptierte fr&uuml;hzeitig, Mittelabruf gesichert</div>
-          <div class="ctx-row"><div class="ctx-dot" style="background:#34c759;"></div>Notartermine durch strukturierten CRM-Nachfassprozess</div>
+        <div class="arrow">&#8595;</div>
+
+        <div class="block action">
+          <div class="block-label">Start der Zusammenarbeit &mdash; 13.11.2025</div>
+          <div class="block-row"><div class="dot"></div>Zielkunden-Avatar f&uuml;r das Projekt definiert</div>
+          <div class="block-row"><div class="dot"></div>Kaufinteressenten &uuml;ber den passenden Kanal gezielt angesprochen</div>
+          <div class="block-row"><div class="dot"></div>Projektseite + Expos&eacute;-Mailversand eingerichtet</div>
+          <div class="block-row"><div class="dot"></div>CRM-Nachfassprozess f&uuml;r jeden Kaufinteressenten implementiert</div>
+          <div class="block-row"><div class="dot"></div>Vertriebssystem + w&ouml;chentliches Coaching &amp; VVQ-Reporting</div>
         </div>
+
+        <div class="arrow">&#8595;</div>
+
+        <div class="quote-block">
+          <div class="q-mark">&ldquo;</div>
+          <div class="q-text">Vor ein paar Monaten h&auml;tte ich mir niemals gedacht, dass wir die 30&nbsp;% Vorverkaufsquote erreichen. Mit den Anfragen von euch kann das Projekt nun realisiert werden.</div>
+          <div class="q-person-row">
+            <div class="q-avatar"><img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Kundenlogos/Ansprechpartner/Sven%20Pfeifer.png" alt="Sven Pfeifer"></div>
+            <div class="q-person">Sven Pfeifer &mdash; Gesch&auml;ftsf&uuml;hrer, Bank 1 Saar</div>
+          </div>
+        </div>
+
       </div>
 
       <!-- RIGHT -->
       <div class="right">
-        <div class="hero-stat">
-          <div class="hero-lbl">Return on Ad Spend</div>
-          <div class="hero-val">~181&times;</div>
-          <div class="hero-unit">10.471&nbsp;&euro; Budget &rarr; ~1,9 Mio&nbsp;&euro; Volumen</div>
-        </div>
 
-        <div class="roi-strip">
-          <div class="roi-item">
-            <div class="roi-val">2,3&nbsp;%</div>
-            <div class="roi-lbl">Konversionsrate</div>
-          </div>
-          <div class="roi-divider"></div>
-          <div class="roi-item">
-            <div class="roi-val">4,7&times;</div>
-            <div class="roi-lbl">vs. Portal</div>
-          </div>
-          <div class="roi-divider"></div>
-          <div class="roi-item">
-            <div class="roi-val">~35&times;</div>
-            <div class="roi-lbl">g&uuml;nstiger Invest/Anfrage</div>
+        <div class="chart-card">
+          <div class="chart-title">Kumulierte Beurkundungen &mdash; Verlauf der Zusammenarbeit</div>
+          <div class="chart-inner">
+            <canvas id="myChart"></canvas>
           </div>
         </div>
 
-        <div class="vk-box">
-          <div class="vk-icon">&#127981;</div>
-          <div class="vk-text"><strong>Vorverkaufsquote erreicht.</strong> Bankfinanzierung gesichert &mdash; Bauprojekt konnte planm&auml;&szlig;ig starten.</div>
+        <div class="results">
+          <div class="res blue">
+            <div class="res-lbl">Anfragen gesamt</div>
+            <div class="res-val">301</div>
+            <div class="res-badge">&#8593; ~57/Monat vs. 2&ndash;3 vorher</div>
+            <div class="res-sub">10.471&nbsp;&euro; Mediabudget</div>
+          </div>
+          <div class="res green">
+            <div class="res-lbl">Beurkundungen</div>
+            <div class="res-val">7</div>
+            <div class="res-badge">Von 0 auf 7</div>
+            <div class="res-sub">notariell &middot; ~1,9 Mio&nbsp;&euro; Volumen</div>
+          </div>
+          <div class="res green">
+            <div class="res-lbl">Vorverkaufsquote</div>
+            <div class="res-val">30&nbsp;%</div>
+            <div class="res-badge">&#10003; VVQ erreicht</div>
+            <div class="res-sub">Bankfinanzierung gesichert</div>
+          </div>
         </div>
-      </div><!-- end right -->
-      </div><!-- end body-row -->
-    </div><!-- end body -->
+
+        <div class="results results-secondary">
+          <div class="res-s blue">
+            <div class="res-s-lbl">Invest pro Anfrage</div>
+            <div class="res-s-val">17,30&nbsp;&euro;</div>
+            <div class="res-s-sub">vs. Portal ~600&nbsp;&euro;</div>
+          </div>
+          <div class="res-s blue">
+            <div class="res-s-lbl">Eintragungsrate Projektseite</div>
+            <div class="res-s-val">8,7&nbsp;%</div>
+            <div class="res-s-sub">301 / 3.474 Besucher</div>
+          </div>
+          <div class="res-s blue">
+            <div class="res-s-lbl">Konversionsrate</div>
+            <div class="res-s-val">2,3&nbsp;%</div>
+            <div class="res-s-sub">4,7&times; h&ouml;her als Portal</div>
+          </div>
+          <div class="res-s green2">
+            <div class="res-s-lbl">Return on Ad Spend</div>
+            <div class="res-s-val">~181&times;</div>
+            <div class="res-s-sub">10.471&nbsp;&euro; &rarr; ~1,9 Mio&nbsp;&euro;</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     <div class="footer">
       <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
-      <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
+      <div class="footer-text">Vertraulich &middot; Präsentations-Deck 2026</div>
     </div>
 
   </div>
 </div>
+
+<script>
+const canvas = document.getElementById('myChart');
+
+const labels = ['Aug','Sep','Okt','Nov','Dez','Jan','Feb','M\u00e4r','Apr'];
+// Kumulierte Beurkundungen: 0 vor Start, dann aufsteigend
+const dataBefore = [0, 0, 0, 0, null, null, null, null, null];
+const dataAfter  = [null, null, null, 0, 1, 2, 4, 6, 7];
+
+const grid = 'rgba(255,255,255,0.07)';
+const muted = 'rgba(255,255,255,0.45)';
+
+const chart = new Chart(canvas, {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      {
+        label: 'Vor Zusammenarbeit',
+        data: dataBefore,
+        borderColor: 'rgba(255,100,80,0.5)',
+        backgroundColor: 'rgba(255,100,80,0.06)',
+        borderWidth: 2,
+        borderDash: [5,4],
+        pointRadius: 4,
+        pointBackgroundColor: 'rgba(255,100,80,0.7)',
+        pointBorderColor: '#2c313c',
+        pointBorderWidth: 1.5,
+        tension: 0.3,
+        fill: true,
+        clip: false,
+        spanGaps: false,
+      },
+      {
+        label: 'Mit neubau.marketing',
+        data: dataAfter,
+        borderColor: '#5b8ff1',
+        backgroundColor: 'rgba(91,143,241,0.12)',
+        borderWidth: 2.5,
+        pointRadius: data => data.raw === 7 ? 7 : 4,
+        pointBackgroundColor: '#5b8ff1',
+        pointBorderColor: '#2c313c',
+        pointBorderWidth: 1.5,
+        tension: 0.4,
+        fill: true,
+        clip: false,
+        spanGaps: false,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: { padding: { top: 28, right: 18, bottom: 2 } },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' ' + ctx.parsed.y + ' Beurkundungen (kum.)'
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: grid },
+        ticks: { color: muted, font: { size: 10 } }
+      },
+      y: {
+        grid: { color: grid },
+        ticks: { color: muted, font: { size: 10 }, stepSize: 1 },
+        min: 0, max: 7
+      }
+    }
+  },
+  plugins: [{
+    id: 'startLine',
+    afterDraw(chart) {
+      const { ctx, scales: { x, y } } = chart;
+      // Vertikale Linie bei Index 3 (Nov = Start)
+      const xPos = x.getPixelForValue(3);
+      const top = y.top;
+      const bottom = y.bottom;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.setLineDash([6, 4]);
+      ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+      ctx.lineWidth = 1.5;
+      ctx.moveTo(xPos, top);
+      ctx.lineTo(xPos, bottom);
+      ctx.stroke();
+      ctx.restore();
+
+      // Label "Start der Zusammenarbeit"
+      ctx.save();
+      ctx.font = 'bold 9px Roboto, sans-serif';
+      ctx.fillStyle = 'rgba(255,255,255,0.5)';
+      ctx.textAlign = 'center';
+      ctx.fillText('Start', xPos, top - 6);
+      ctx.restore();
+    }
+  }]
+});
+</script>
 </body>
 </html>
