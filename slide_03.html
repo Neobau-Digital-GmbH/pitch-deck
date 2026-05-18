@@ -45,7 +45,8 @@
   .flow-step.s1::after,.flow-step.s2::after,.flow-step.s3::after { background:linear-gradient(90deg,transparent,rgba(91,143,241,0.35),transparent); }
   .flow-step.result::after { background:linear-gradient(90deg,transparent,rgba(52,199,89,0.5),transparent); }
 
-  .flow-icon { font-size:clamp(24px,2.8vw,40px); }
+  .flow-icon { width:clamp(28px,3vw,44px);height:clamp(28px,3vw,44px);flex-shrink:0; }
+  .flow-icon svg { width:100%;height:100%; }
   .flow-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5b8ff1; }
   .flow-step.result .flow-label { color:#34c759; }
   .flow-title { font-size:clamp(15px,1.4vw,22px);font-weight:900;color:#ffffff;line-height:1.2; }
@@ -57,7 +58,8 @@
   /* ── DIFFERENTIATORS ── */
   .diffs { display:flex;gap:1.4vw;flex-shrink:0; }
   .diff-card { flex:1;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:clamp(12px,1.3vh,18px) clamp(14px,1.4vw,20px);display:flex;align-items:flex-start;gap:0.8vw; }
-  .diff-icon { font-size:clamp(16px,1.5vw,22px);flex-shrink:0;margin-top:1px; }
+  .diff-icon { width:clamp(18px,1.8vw,26px);height:clamp(18px,1.8vw,26px);flex-shrink:0;margin-top:2px; }
+  .diff-icon svg { width:100%;height:100%; }
   .diff-title { font-size:clamp(13px,1.05vw,17px);font-weight:700;color:#ffffff;line-height:1.2;margin-bottom:0.3vh; }
   .diff-sub { font-size:clamp(11px,0.88vw,14px);color:rgba(255,255,255,0.58);line-height:1.4; }
 </style>
@@ -80,7 +82,7 @@
       <div class="flow">
 
         <div class="flow-step s1">
-          <div class="flow-icon">&#127919;</div>
+          <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5b8ff1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="12" cy="12" r="9" stroke-dasharray="2.5 2" opacity="0.3"/><line x1="12" y1="3" x2="12" y2="1"/><line x1="12" y1="23" x2="12" y2="21"/><line x1="3" y1="12" x2="1" y2="12"/><line x1="23" y1="12" x2="21" y2="12"/></svg></div>
           <div class="flow-label">Schritt 1</div>
           <div class="flow-title">Zielkunden-Avatar</div>
           <div class="flow-desc">Aus Ihren bisherigen K&auml;ufern, unseren Referenzprojekten und dem Profil Ihrer Einheiten &mdash; wir wissen genau, <strong>wer kauft.</strong></div>
@@ -89,7 +91,7 @@
         <div class="flow-arrow">&#8594;</div>
 
         <div class="flow-step s2">
-          <div class="flow-icon">&#128270;</div>
+          <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5b8ff1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div>
           <div class="flow-label">Schritt 2</div>
           <div class="flow-title">Der richtige Kanal</div>
           <div class="flow-desc">Nicht jedes Projekt funktioniert auf demselben Weg. <strong>Wir w&auml;hlen f&uuml;r Ihr Projekt den Kanal</strong>, der Ihren Zielkunden tats&auml;chlich erreicht.</div>
@@ -98,7 +100,7 @@
         <div class="flow-arrow">&#8594;</div>
 
         <div class="flow-step s3">
-          <div class="flow-icon">&#128172;</div>
+          <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5b8ff1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="12" y2="14"/></svg></div>
           <div class="flow-label">Schritt 3</div>
           <div class="flow-title">Spitze Ansprache</div>
           <div class="flow-desc">Ihr Zielkunde wird mit einem Angebot angesprochen, das <strong>perfekt zu ihm passt</strong> &mdash; und landet auf Ihrer Projektseite.</div>
@@ -107,7 +109,7 @@
         <div class="flow-arrow">&#8594;</div>
 
         <div class="flow-step result">
-          <div class="flow-icon">&#9989;</div>
+          <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#34c759" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
           <div class="flow-label">Ergebnis</div>
           <div class="flow-title">Kaufinteressenten in Ihrer Pipeline</div>
           <div class="flow-desc">Interessenten tragen sich <strong>proaktiv</strong> ein &mdash; vorqualifiziert, motiviert, bereit f&uuml;r Ihren Vertrieb.</div>
@@ -119,7 +121,7 @@
       <div class="diffs">
 
         <div class="diff-card">
-          <div class="diff-icon">&#9940;</div>
+          <div class="diff-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="8" x2="16" y2="16"/><line x1="16" y1="8" x2="8" y2="16"/></svg></div>
           <div>
             <div class="diff-title">Kein Schema F</div>
             <div class="diff-sub">Jedes Projekt bekommt seinen eigenen Ansatz &mdash; entwickelt mit Ihrem Ansprechpartner.</div>
@@ -127,7 +129,7 @@
         </div>
 
         <div class="diff-card">
-          <div class="diff-icon">&#128222;</div>
+          <div class="diff-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
           <div>
             <div class="diff-title">W&ouml;chentlicher Kontakt</div>
             <div class="diff-sub">Fester Rhythmus: wöchentliches Meeting, monatliches Strategiegespr&auml;ch.</div>
@@ -135,7 +137,7 @@
         </div>
 
         <div class="diff-card">
-          <div class="diff-icon">&#128200;</div>
+          <div class="diff-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
           <div>
             <div class="diff-title">Vollst&auml;ndige Transparenz</div>
             <div class="diff-sub">Alle Kennzahlen jederzeit einsehbar &mdash; keine Black Box, keine Ausreden.</div>
@@ -143,7 +145,7 @@
         </div>
 
         <div class="diff-card">
-          <div class="diff-icon">&#127919;</div>
+          <div class="diff-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="rgba(255,255,255,0.6)" stroke="none"/><line x1="22" y1="2" x2="14" y2="10"/><polyline points="18 2 22 2 22 6"/></svg></div>
           <div>
             <div class="diff-title">Ihr Vertrieb f&uuml;hrt den Abschluss</div>
             <div class="diff-sub">Wir liefern die qualifizierten Kaufinteressenten &mdash; Ihr Team f&uuml;hrt sie zum Notartermin.</div>
@@ -155,7 +157,7 @@
     </div>
     <div class="footer">
       <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
-      <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
+      <div class="footer-text">Vertraulich &middot; Präsentations-Deck 2026</div>
     </div>
   </div>
 </div>
