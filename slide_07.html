@@ -300,7 +300,7 @@ const chart = new Chart(canvas, {
     afterDraw(chart) {
       const { ctx, scales: { x, y } } = chart;
       // Vertikale Linie bei Index 3 (Nov = Start)
-      const xPos = x.getPixelForValue(3);
+      const xPos = x.getPixelForValue(2);
       const top = y.top;
       const bottom = y.bottom;
 
